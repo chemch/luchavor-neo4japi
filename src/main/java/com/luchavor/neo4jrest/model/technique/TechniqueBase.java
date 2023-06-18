@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class BaseTechnique implements Technique {
+public abstract class TechniqueBase implements Technique {
 	
 	/* functionality implemented by both the the same way */
 	private String mitreId; // t code for offensive techniques and d3 id for defensive techniques

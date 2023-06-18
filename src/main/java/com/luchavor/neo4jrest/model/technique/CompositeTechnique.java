@@ -11,7 +11,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 @Node("TechniqueGroup")
-public class CompositeTechnique extends BaseTechnique {
+public class CompositeTechnique extends TechniqueBase {
 	
 	private static final Logger log = LoggerFactory.getLogger(CompositeTechnique.class);
 	

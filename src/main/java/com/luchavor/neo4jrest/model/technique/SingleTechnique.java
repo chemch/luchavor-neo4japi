@@ -10,7 +10,7 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 
 @Node("Technique")
-public class SingleTechnique extends BaseTechnique {
+public class SingleTechnique extends TechniqueBase {
 	
 	private static final Logger log = LoggerFactory.getLogger(SingleTechnique.class);
 	

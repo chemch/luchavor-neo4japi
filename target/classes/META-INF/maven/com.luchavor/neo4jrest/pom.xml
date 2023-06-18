@@ -11,7 +11,7 @@
 	<groupId>com.luchavor</groupId>
 	<artifactId>neo4jrest</artifactId>
 	<version>0.0.1</version>
-	<name>neo4j-rest-api</name>
+	<name>neo4j-rest</name>
 	<description>Rest API to Neo4j Database</description>
 	<properties>
 		<java.version>20</java.version>
