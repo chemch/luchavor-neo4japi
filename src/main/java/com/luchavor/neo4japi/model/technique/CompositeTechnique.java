@@ -1,4 +1,4 @@
-package com.luchavor.neo4jrest.model.technique;
+package com.luchavor.neo4japi.model.technique;
 
 import java.util.List;
 import java.util.UUID;
