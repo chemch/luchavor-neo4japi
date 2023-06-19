@@ -19,7 +19,7 @@ public class CompositeTechnique extends TechniqueBase {
 	@Id @GeneratedValue private UUID id;
 	
 	// list of child techniques
-	@Relationship(type = "BELONG_TO")
+	@Relationship(type = "INCLUDES")
 	private List<Technique> techniques = new ArrayList<Technique>();
 	
 	// custom print
