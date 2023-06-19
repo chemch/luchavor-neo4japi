@@ -1,3 +1,8 @@
-![luchavor1](https://github.com/chemch/luchavor-neo4japi/assets/10344847/b11b3986-4395-4081-95fa-805ef3952d1e)
+# Luchavor Neo4j API
 
-Component Purpose: Rest API to Neo4j Database
+## Purpose
+Rest API to Neo4j Database
+
+## Logo Icon
+
+![luchavor4](https://github.com/chemch/luchavor-neo4japi/assets/10344847/c77d8517-2de6-4dc5-abdf-09c872365a28)
