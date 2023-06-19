@@ -13,5 +13,6 @@ import com.luchavor.neo4japi.model.Technique;
 
 @RepositoryRestResource(collectionResourceRel = "composite-technique", path = "composite-technique")
 public interface CompositeTechniqueRepo extends PagingAndSortingRepository<CompositeTechnique, UUID>, CrudRepository<CompositeTechnique, UUID> {
-	List<Technique> findByMitreId(@Param("mitreId") String mitreId);
+	Technique findByMitreId(@Param("mitreId") String mitreId);
+	List<Technique> findByParentMitreId(@Param("mitreId") String mitreId);
 }

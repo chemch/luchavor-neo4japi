@@ -13,5 +13,6 @@ import com.luchavor.neo4japi.model.Technique;
 
 @RepositoryRestResource(collectionResourceRel = "single-technique", path = "single-technique")
 public interface SingleTechniqueRepo extends PagingAndSortingRepository<SingleTechnique, UUID>, CrudRepository<SingleTechnique, UUID> {
-	List<Technique> findByMitreId(@Param("mitreId") String mitreId);
+	Technique findByMitreId(@Param("mitreId") String mitreId);
+	List<Technique> findByParentMitreId(@Param("mitreId") String mitreId);
 }
