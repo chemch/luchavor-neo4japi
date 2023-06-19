@@ -1,4 +1,4 @@
-package com.luchavor.neo4japi.model.technique;
+package com.luchavor.neo4japi.model;
 
 public interface Technique {
 
