@@ -1,0 +1,8 @@
+server:
+  port: 7000
+spring:
+  neo4j:
+    authentication:
+      password: tbd
+      username: tbd
+    uri: bolt://localhost:7687
