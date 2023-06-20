@@ -23,6 +23,6 @@ public class RelationController {
 	public ResponseEntity<String> addTechniqueRelations() {
 		log.info("Building Technique Composite Relationships to Children");
 		techniqueService.buildTechniqueRelations();
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK); 
 	}
 }

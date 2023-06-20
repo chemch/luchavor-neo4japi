@@ -1,7 +1,7 @@
 # Luchavor Neo4j API
 
 ## Purpose
-Rest API to Neo4j Database
+Rest API to Neo4j Database 
 
 ## Logo Icon
 
