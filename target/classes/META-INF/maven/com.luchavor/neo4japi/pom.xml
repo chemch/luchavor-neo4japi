@@ -15,7 +15,7 @@
 	<description>Rest API to Neo4j Database</description>
 	<properties>
 		<java.version>20</java.version>
-	</properties>
+	</properties> 
 	<dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
