@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ApplicationTests {
+class ApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -26,27 +26,27 @@ public class ApplicationTests {
 	@Autowired
 	private SingleTechniqueRepo repository;
 
-	@BeforeEach
-	public void deleteAllBeforeTests() throws Exception {
+    @BeforeEach
+    void deleteAllBeforeTests() throws Exception {
 		repository.deleteAll();
 	}
 
-	@Test
-	public void shouldReturnRepositoryIndex() throws Exception {
+    @Test
+    void shouldReturnRepositoryIndex() throws Exception {
 		mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk()).andExpect(
 				jsonPath("$._links.single-technique").exists());
 	}
 
-	@Test
-	public void shouldCreateEntity() throws Exception {
+    @Test
+    void shouldCreateEntity() throws Exception {
 		mockMvc.perform(post("/single-technique").content(
 				"{\"mitreId\": \"T-001\", \"tactic\": \"Model\", \"name\": \"Test\", \"description\":\"Trampling is an unholy approach to defense.\"}")).andExpect(
 						status().isCreated()).andExpect(
 								header().string("Location", containsString("technique/")));
 	}
 
-	@Test
-	public void shouldRetrieveEntity() throws Exception {
+    @Test
+    void shouldRetrieveEntity() throws Exception {
 		MvcResult mvcResult = mockMvc.perform(post("/single-technique").content(
 				"{\"mitreId\": \"T-001\", \"tactic\": \"Model\", \"name\": \"Test\", \"description\":\"Trampling is an unholy approach to defense.\"}")).andExpect(
 						status().isCreated()).andReturn();
@@ -57,8 +57,8 @@ public class ApplicationTests {
 						jsonPath("$.tactic").value("Model"));
 	}
 
-	@Test
-	public void shouldQueryEntity() throws Exception {
+    @Test
+    void shouldQueryEntity() throws Exception {
 		mockMvc.perform(post("/single-technique").content(
 				"{\"mitreId\": \"T-001\", \"tactic\": \"Model\", \"name\": \"Test\", \"description\":\"Trampling is an unholy approach to defense.\"}")).andExpect(
 						status().isCreated());
@@ -70,8 +70,8 @@ public class ApplicationTests {
 										"Test"));
 	}
 
-	@Test
-	public void shouldUpdateEntity() throws Exception {
+    @Test
+    void shouldUpdateEntity() throws Exception {
 		MvcResult mvcResult = mockMvc.perform(post("/single-technique").content(
 				"{\"mitreId\": \"T-002\", \"tactic\": \"Model\", \"name\": \"Test\", \"description\":\"Trampling is an unholy approach to defense.\"}")).andExpect(
 						status().isCreated()).andReturn();
@@ -87,8 +87,8 @@ public class ApplicationTests {
 						jsonPath("$.name").value("Test"));
 	}
 
-	@Test
-	public void shouldPartiallyUpdateEntity() throws Exception {
+    @Test
+    void shouldPartiallyUpdateEntity() throws Exception {
 		MvcResult mvcResult = mockMvc.perform(post("/single-technique").content(
 				"{\"mitreId\": \"T-001\", \"tactic\": \"Model\", \"name\": \"Test\", \"description\":\"Trampling is an unholy approach to defense.\"}")).andExpect(
 						status().isCreated()).andReturn();
@@ -104,8 +104,8 @@ public class ApplicationTests {
 						jsonPath("$.tactic").value("Detect"));
 	}
 
-	@Test
-	public void shouldDeleteEntity() throws Exception {
+    @Test
+    void shouldDeleteEntity() throws Exception {
 		MvcResult mvcResult = mockMvc.perform(post("/single-technique").content(
 				"{\"mitreId\": \"T-001\", \"tactic\": \"Model\", \"name\": \"Test\", \"description\":\"Trampling is an unholy approach to defense.\"}")).andExpect(
 						status().isCreated()).andReturn();
