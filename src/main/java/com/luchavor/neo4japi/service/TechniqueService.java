@@ -4,51 +4,51 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.luchavor.neo4japi.model.CompositeTechnique;
-import com.luchavor.neo4japi.model.SingleTechnique;
-import com.luchavor.neo4japi.model.Technique;
-import com.luchavor.neo4japi.data.CompositeTechniqueRepo;
-import com.luchavor.neo4japi.data.SingleTechniqueRepo;
+import com.luchavor.neo4japi.model.TechniqueGroup;
+import com.luchavor.neo4japi.model.MitreTechnique;
+import com.luchavor.neo4japi.data.TechniqueGroupRepo;
+import com.luchavor.datamodel.technique.Technique;
+import com.luchavor.neo4japi.data.MitreTechniqueRepo;
 import java.util.ArrayList;
 
 @Service
 public class TechniqueService {
 	
 	@Autowired
-	SingleTechniqueRepo singleTechniqueRepo;
+	MitreTechniqueRepo mitreTechniqueRepo;
 	
 	@Autowired
-	CompositeTechniqueRepo compositeTechniqueRepo;
+	TechniqueGroupRepo techniqueGroupRepo;
 	
-	public void addSingleTechniques(List<SingleTechnique> techniques) {
-		singleTechniqueRepo.saveAll(techniques);
+	public void addSingleTechniques(List<MitreTechnique> techniques) {
+		mitreTechniqueRepo.saveAll(techniques);
 	}
 	
-	public void addCompositeTechniques(List<CompositeTechnique> composites) {
-		compositeTechniqueRepo.saveAll(composites);
+	public void addCompositeTechniques(List<TechniqueGroup> composites) {
+		techniqueGroupRepo.saveAll(composites);
 	}
 	
 	public void deleteAllTechniques() {
-		singleTechniqueRepo.deleteAll();
-		compositeTechniqueRepo.deleteAll();
+		mitreTechniqueRepo.deleteAll();
+		techniqueGroupRepo.deleteAll();
 	}
 	
 	public void buildTechniqueRelations() {
 		// get all composites
-		Iterable<CompositeTechnique> composites = compositeTechniqueRepo.findAll();
+		Iterable<TechniqueGroup> composites = techniqueGroupRepo.findAll();
 		
 		// loop through composites adding children along the way
 		composites.forEach(composite -> {
 			// get children (both composite children and single children)
 			List<Technique> children = new ArrayList<>();
-			children.addAll(singleTechniqueRepo.findByParentMitreId(composite.getMitreId()));
-			children.addAll(compositeTechniqueRepo.findByParentMitreId(composite.getMitreId()));
+			children.addAll(mitreTechniqueRepo.findByParentMitreId(composite.getMitreId()));
+			children.addAll(techniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
 			// add children
 			children.forEach(child -> {
 				composite.add(child);
 			});
 			// save updated composite
-			compositeTechniqueRepo.save((CompositeTechnique) composite);
+			techniqueGroupRepo.save((TechniqueGroup) composite);
 		});
 	}
 }

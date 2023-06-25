@@ -8,11 +8,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.luchavor.neo4japi.model.CompositeTechnique;
-import com.luchavor.neo4japi.model.Technique;
+import com.luchavor.datamodel.technique.Technique;
+import com.luchavor.neo4japi.model.MitreTechnique;
 
-@RepositoryRestResource(collectionResourceRel = "composite-technique", path = "composite-technique")
-public interface CompositeTechniqueRepo extends PagingAndSortingRepository<CompositeTechnique, UUID>, CrudRepository<CompositeTechnique, UUID> {
+@RepositoryRestResource(collectionResourceRel = "single-technique", path = "single-technique")
+public interface MitreTechniqueRepo extends PagingAndSortingRepository<MitreTechnique, UUID>, CrudRepository<MitreTechnique, UUID> {
 	Technique findByMitreId(@Param("mitreId") String mitreId);
 	List<Technique> findByParentMitreId(@Param("mitreId") String mitreId);
 }

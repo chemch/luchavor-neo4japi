@@ -9,16 +9,19 @@ import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import com.luchavor.datamodel.technique.Technique;
+import com.luchavor.datamodel.technique.TechniqueBase;
 
 @Node("TechniqueGroup")
-public class CompositeTechnique extends TechniqueBase {
+public class TechniqueGroup extends TechniqueBase {
 	
-	private static final Logger log = LoggerFactory.getLogger(CompositeTechnique.class);
+	@SuppressWarnings("unused")
+	private static final Logger log = LoggerFactory.getLogger(TechniqueGroup.class);
 	
 	// neo4j id
 	@Id @GeneratedValue private UUID id;
 	
-	// list of child techniques
+	// neo4j list of child techniques
 	@Relationship(type = "CONTAINS")
 	private List<Technique> techniques = new ArrayList<Technique>();
 	
@@ -31,11 +34,6 @@ public class CompositeTechnique extends TechniqueBase {
 		for (Technique technique : techniques) {
 			technique.print();
 		}
-	}
-	
-	// custom log
-	public void log() {
-		log.info(this.toString());
 	}
 	
 	public void add(Technique technique) {
@@ -53,5 +51,5 @@ public class CompositeTechnique extends TechniqueBase {
 	@Override
 	public String toString() {
 		return "mitreId: " + this.getMitreId() + ", tactic: " + this.getTactic() + ", name: " + this.getName() + ", description: " + this.getDescription();
-	}
+	}	
 }

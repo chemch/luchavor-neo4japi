@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.luchavor.neo4japi.model.CompositeTechnique;
-import com.luchavor.neo4japi.model.SingleTechnique;
+import com.luchavor.neo4japi.model.TechniqueGroup;
+import com.luchavor.neo4japi.model.MitreTechnique;
 import com.luchavor.neo4japi.service.TechniqueService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class BatchController {
 	// tag::technique[]
 	@PostMapping("/single-technique")
 	@ResponseBody
-	public ResponseEntity<String> addSingleTechniques(@RequestBody List<SingleTechnique> techniques) {
+	public ResponseEntity<String> addSingleTechniques(@RequestBody List<MitreTechnique> techniques) {
 		log.info("Batch Upload of Single Techniques: Size: " + techniques.size() + " Techniques");
 		techniqueService.addSingleTechniques(techniques);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -37,7 +37,7 @@ public class BatchController {
 	
 	@PostMapping("/composite-technique")
 	@ResponseBody
-	public ResponseEntity<String> addCompositeTechniques(@RequestBody List<CompositeTechnique> composites) {
+	public ResponseEntity<String> addCompositeTechniques(@RequestBody List<TechniqueGroup> composites) {
 		log.info("Batch Upload of Composite Techniques: Size: " + composites.size() + " Techniques");
 		techniqueService.addCompositeTechniques(composites);
 		return new ResponseEntity<>(HttpStatus.OK);
