@@ -11,5 +11,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class Neo4jApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Neo4jApiApplication.class, args);
-	} 
+	}
 }

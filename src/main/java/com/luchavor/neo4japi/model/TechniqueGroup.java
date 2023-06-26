@@ -19,7 +19,8 @@ public class TechniqueGroup extends TechniqueBase {
 	private static final Logger log = LoggerFactory.getLogger(TechniqueGroup.class);
 	
 	// neo4j id
-	@Id @GeneratedValue private UUID id;
+	@Id @GeneratedValue 
+	private UUID id;
 	
 	// neo4j list of child techniques
 	@Relationship(type = "CONTAINS")
