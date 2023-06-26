@@ -10,10 +10,10 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 import com.luchavor.datamodel.technique.Technique;
-import com.luchavor.datamodel.technique.TechniqueBase;
+import com.luchavor.datamodel.technique.AbstractTechnique;
 
 @Node("TechniqueGroup")
-public class TechniqueGroup extends TechniqueBase {
+public class TechniqueGroup extends AbstractTechnique {
 	
 	@SuppressWarnings("unused")
 	private static final Logger log = LoggerFactory.getLogger(TechniqueGroup.class);
@@ -52,5 +52,5 @@ public class TechniqueGroup extends TechniqueBase {
 	@Override
 	public String toString() {
 		return "mitreId: " + this.getMitreId() + ", tactic: " + this.getTactic() + ", name: " + this.getName() + ", description: " + this.getDescription();
-	}	
+	}
 }

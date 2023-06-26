@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
-import com.luchavor.datamodel.technique.SingleTechnique;
+import com.luchavor.datamodel.technique.TechniqueItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Node("Technique")
 @EqualsAndHashCode(callSuper=true)
-public class MitreTechnique extends SingleTechnique {
+public class Neo4jTechnique extends TechniqueItem {
 	
 	@SuppressWarnings("unused")
-	private static final Logger log = LoggerFactory.getLogger(MitreTechnique.class);
+	private static final Logger log = LoggerFactory.getLogger(Neo4jTechnique.class);
 	
 	// neo4j id
 	@Id @GeneratedValue private UUID id;

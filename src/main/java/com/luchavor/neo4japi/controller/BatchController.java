@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luchavor.neo4japi.model.TechniqueGroup;
-import com.luchavor.datamodel.technique.SingleTechnique;
+import com.luchavor.datamodel.technique.TechniqueItem;
 import com.luchavor.neo4japi.service.TechniqueService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class BatchController {
 	// tag::technique[]
 	@PostMapping("/single-technique")
 	@ResponseBody
-	public ResponseEntity<String> addSingleTechniques(@RequestBody List<SingleTechnique> techniques) {
+	public ResponseEntity<String> addSingleTechniques(@RequestBody List<TechniqueItem> techniques) {
 		log.info("Batch Upload of Single Techniques: Size: " + techniques.size() + " Techniques");
 		techniqueService.addSingleTechniques(techniques);
 		return new ResponseEntity<>(HttpStatus.OK);

@@ -18,7 +18,7 @@ import com.luchavor.neo4japi.persistence.DefendTechniqueGroupRepo;
 import com.luchavor.neo4japi.persistence.DefendTechniqueRepo;
 import com.luchavor.neo4japi.persistence.TechniqueGroupRepo;
 import com.luchavor.datamodel.technique.ModelType;
-import com.luchavor.datamodel.technique.SingleTechnique;
+import com.luchavor.datamodel.technique.TechniqueItem;
 import com.luchavor.datamodel.technique.Technique;
 
 @Service
@@ -39,29 +39,29 @@ public class TechniqueService {
 	@Autowired
 	TechniqueGroupRepo techniqueGroupRepo;
 
-	// wrapper to convert SingleTechnique to DefendTechnique
-	public DefendTechnique convertDefendTechnique( SingleTechnique singleTechnique ) {
+	// wrapper to convert TechniqueItem to DefendTechnique
+	public DefendTechnique convertDefendTechnique( TechniqueItem techniqueItem ) {
 		DefendTechnique defendTechnique = new DefendTechnique();
-		defendTechnique.setDescription(singleTechnique.getDescription());
-		defendTechnique.setMitreId(singleTechnique.getMitreId());
-		defendTechnique.setModel(singleTechnique.getModel());
-		defendTechnique.setName(singleTechnique.getName());
-		defendTechnique.setParentMitreId(singleTechnique.getParentMitreId());
-		defendTechnique.setTactic(singleTechnique.getTactic());
-		defendTechnique.setTreeLevel(singleTechnique.getTreeLevel());
+		defendTechnique.setDescription(techniqueItem.getDescription());
+		defendTechnique.setMitreId(techniqueItem.getMitreId());
+		defendTechnique.setModel(techniqueItem.getModel());
+		defendTechnique.setName(techniqueItem.getName());
+		defendTechnique.setParentMitreId(techniqueItem.getParentMitreId());
+		defendTechnique.setTactic(techniqueItem.getTactic());
+		defendTechnique.setTreeLevel(techniqueItem.getTreeLevel());
 		return defendTechnique;
 	}
 	
-	// wrapper to convert SingleTechnique to AttackTechnique
-	public AttackTechnique convertAttackTechnique( SingleTechnique singleTechnique ) {
+	// wrapper to convert TechniqueItem to AttackTechnique
+	public AttackTechnique convertAttackTechnique( TechniqueItem techniqueItem ) {
 		AttackTechnique attackTechnique = new AttackTechnique();
-		attackTechnique.setDescription(singleTechnique.getDescription());
-		attackTechnique.setMitreId(singleTechnique.getMitreId());
-		attackTechnique.setModel(singleTechnique.getModel());
-		attackTechnique.setName(singleTechnique.getName());
-		attackTechnique.setParentMitreId(singleTechnique.getParentMitreId());
-		attackTechnique.setTactic(singleTechnique.getTactic());
-		attackTechnique.setTreeLevel(singleTechnique.getTreeLevel());
+		attackTechnique.setDescription(techniqueItem.getDescription());
+		attackTechnique.setMitreId(techniqueItem.getMitreId());
+		attackTechnique.setModel(techniqueItem.getModel());
+		attackTechnique.setName(techniqueItem.getName());
+		attackTechnique.setParentMitreId(techniqueItem.getParentMitreId());
+		attackTechnique.setTactic(techniqueItem.getTactic());
+		attackTechnique.setTreeLevel(techniqueItem.getTreeLevel());
 		return attackTechnique;
 	}
 	
@@ -91,7 +91,7 @@ public class TechniqueService {
 		return attackTechniqueGroup;
 	}
 	
-	public void addSingleTechniques(List<SingleTechnique> techniques) {
+	public void addSingleTechniques(List<TechniqueItem> techniques) {
 		// build and load attack techniques
 		List<AttackTechnique> attackTechniques = techniques
 				.stream()

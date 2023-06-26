@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @Node("AttackTechnique")
 @EqualsAndHashCode(callSuper=true)
-public class AttackTechnique extends MitreTechnique { 
+public class AttackTechnique extends Neo4jTechnique { 
 	/* inherits everything from parent  */
 }
