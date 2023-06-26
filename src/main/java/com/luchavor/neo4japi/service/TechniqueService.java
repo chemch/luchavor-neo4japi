@@ -12,14 +12,14 @@ import com.luchavor.neo4japi.model.AttackTechniqueGroup;
 import com.luchavor.neo4japi.model.DefendTechniqueGroup;
 import com.luchavor.neo4japi.model.DefendTechnique;
 import com.luchavor.neo4japi.model.TechniqueGroup;
+import com.luchavor.neo4japi.persistence.AttackTechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.AttackTechniqueRepo;
+import com.luchavor.neo4japi.persistence.DefendTechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.DefendTechniqueRepo;
+import com.luchavor.neo4japi.persistence.TechniqueGroupRepo;
 import com.luchavor.datamodel.technique.ModelType;
 import com.luchavor.datamodel.technique.SingleTechnique;
 import com.luchavor.datamodel.technique.Technique;
-import com.luchavor.neo4japi.data.AttackTechniqueGroupRepo;
-import com.luchavor.neo4japi.data.AttackTechniqueRepo;
-import com.luchavor.neo4japi.data.DefendTechniqueGroupRepo;
-import com.luchavor.neo4japi.data.DefendTechniqueRepo;
-import com.luchavor.neo4japi.data.TechniqueGroupRepo;
 
 @Service
 public class TechniqueService {
