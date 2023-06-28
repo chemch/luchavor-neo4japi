@@ -19,11 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Node("Technique")
 @EqualsAndHashCode(callSuper=true)
-public class Neo4jTechnique extends TechniqueItem {
-	
-	@SuppressWarnings("unused")
-	private static final Logger log = LoggerFactory.getLogger(Neo4jTechnique.class);
-	
+public class Neo4jTechnique extends TechniqueItem {	
 	// neo4j id
 	@Id @GeneratedValue private UUID id;
 }

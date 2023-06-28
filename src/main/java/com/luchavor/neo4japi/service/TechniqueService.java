@@ -17,8 +17,8 @@ import com.luchavor.neo4japi.persistence.AttackTechniqueRepo;
 import com.luchavor.neo4japi.persistence.DefendTechniqueGroupRepo;
 import com.luchavor.neo4japi.persistence.DefendTechniqueRepo;
 import com.luchavor.neo4japi.persistence.TechniqueGroupRepo;
-import com.luchavor.datamodel.technique.ModelType;
 import com.luchavor.datamodel.technique.TechniqueItem;
+import com.luchavor.datamodel.mitre.ModelType;
 import com.luchavor.datamodel.technique.Technique;
 
 @Service
@@ -45,6 +45,7 @@ public class TechniqueService {
 		defendTechnique.setDescription(techniqueItem.getDescription());
 		defendTechnique.setMitreId(techniqueItem.getMitreId());
 		defendTechnique.setModel(techniqueItem.getModel());
+		defendTechnique.setSubModel(techniqueItem.getSubModel());
 		defendTechnique.setName(techniqueItem.getName());
 		defendTechnique.setParentMitreId(techniqueItem.getParentMitreId());
 		defendTechnique.setTactic(techniqueItem.getTactic());
@@ -58,6 +59,7 @@ public class TechniqueService {
 		attackTechnique.setDescription(techniqueItem.getDescription());
 		attackTechnique.setMitreId(techniqueItem.getMitreId());
 		attackTechnique.setModel(techniqueItem.getModel());
+		attackTechnique.setSubModel(techniqueItem.getSubModel());
 		attackTechnique.setName(techniqueItem.getName());
 		attackTechnique.setParentMitreId(techniqueItem.getParentMitreId());
 		attackTechnique.setTactic(techniqueItem.getTactic());
@@ -71,6 +73,7 @@ public class TechniqueService {
 		defendTechniqueGroup.setDescription(techniqueGroup.getDescription());
 		defendTechniqueGroup.setMitreId(techniqueGroup.getMitreId());
 		defendTechniqueGroup.setModel(techniqueGroup.getModel());
+		defendTechniqueGroup.setSubModel(techniqueGroup.getSubModel());
 		defendTechniqueGroup.setName(techniqueGroup.getName());
 		defendTechniqueGroup.setParentMitreId(techniqueGroup.getParentMitreId());
 		defendTechniqueGroup.setTactic(techniqueGroup.getTactic());
@@ -84,6 +87,7 @@ public class TechniqueService {
 		attackTechniqueGroup.setDescription(techniqueGroup.getDescription());
 		attackTechniqueGroup.setMitreId(techniqueGroup.getMitreId());
 		attackTechniqueGroup.setModel(techniqueGroup.getModel());
+		attackTechniqueGroup.setSubModel(techniqueGroup.getSubModel());
 		attackTechniqueGroup.setName(techniqueGroup.getName());
 		attackTechniqueGroup.setParentMitreId(techniqueGroup.getParentMitreId());
 		attackTechniqueGroup.setTactic(techniqueGroup.getTactic());
