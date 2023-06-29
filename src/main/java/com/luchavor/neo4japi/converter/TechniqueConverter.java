@@ -14,7 +14,7 @@ import com.luchavor.neo4japi.model.TechniqueGroup;
 public class TechniqueConverter {	
 		
 	// converter to convert TechniqueItem to AttackTechnique
-	public DefendTechnique convertDefendTechnique( TechniqueItem techniqueItem ) {
+	public DefendTechnique toDefendTechnique( TechniqueItem techniqueItem ) {
 		DefendTechnique converted = new DefendTechnique();
 		converted.setDescription(techniqueItem.getDescription());
 		converted.setMitreId(techniqueItem.getMitreId());
@@ -28,7 +28,7 @@ public class TechniqueConverter {
 	}
 	
 	// converter to convert TechniqueItem to AttackTechnique
-	public AttackTechnique convertAttackTechnique( TechniqueItem techniqueItem ) {
+	public AttackTechnique toAttackTechnique( TechniqueItem techniqueItem ) {
 		AttackTechnique converted = new AttackTechnique();
 		converted.setDescription(techniqueItem.getDescription());
 		converted.setMitreId(techniqueItem.getMitreId());
@@ -42,7 +42,7 @@ public class TechniqueConverter {
 	}
 	
 	// converter to convert techinqueGroup to DefendTechniqueGroup
-	public DefendTechniqueGroup convertDefendTechniqueGroup( TechniqueGroup techniqueGroup ) {
+	public DefendTechniqueGroup toDefendTechniqueGroup( TechniqueGroup techniqueGroup ) {
 		DefendTechniqueGroup converted = new DefendTechniqueGroup();
 		converted.setDescription(techniqueGroup.getDescription());
 		converted.setMitreId(techniqueGroup.getMitreId());
@@ -56,7 +56,7 @@ public class TechniqueConverter {
 	}
 	
 	// converter to convert techniqueGroup to AttackTechniqueGroup
-	public AttackTechniqueGroup convertAttackTechniqueGroup( TechniqueGroup techniqueGroup ) {
+	public AttackTechniqueGroup toAttackTechniqueGroup( TechniqueGroup techniqueGroup ) {
 		AttackTechniqueGroup converted = new AttackTechniqueGroup();
 		converted.setDescription(techniqueGroup.getDescription());
 		converted.setMitreId(techniqueGroup.getMitreId());
