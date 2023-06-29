@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luchavor.neo4japi.converter.TechniqueConverter;
 import com.luchavor.neo4japi.model.AttackTechnique;
 import com.luchavor.neo4japi.model.AttackTechniqueGroup;
 import com.luchavor.neo4japi.model.DefendTechniqueGroup;
@@ -38,76 +39,24 @@ public class TechniqueService {
 	
 	@Autowired
 	TechniqueGroupRepo techniqueGroupRepo;
+	
+	@Autowired
+	TechniqueConverter techniqueConverter;
 
-	// wrapper to convert TechniqueItem to DefendTechnique
-	public DefendTechnique convertDefendTechnique( TechniqueItem techniqueItem ) {
-		DefendTechnique defendTechnique = new DefendTechnique();
-		defendTechnique.setDescription(techniqueItem.getDescription());
-		defendTechnique.setMitreId(techniqueItem.getMitreId());
-		defendTechnique.setModel(techniqueItem.getModel());
-		defendTechnique.setSubModel(techniqueItem.getSubModel());
-		defendTechnique.setName(techniqueItem.getName());
-		defendTechnique.setParentMitreId(techniqueItem.getParentMitreId());
-		defendTechnique.setTactic(techniqueItem.getTactic());
-		defendTechnique.setTreeLevel(techniqueItem.getTreeLevel());
-		return defendTechnique;
-	}
-	
-	// wrapper to convert TechniqueItem to AttackTechnique
-	public AttackTechnique convertAttackTechnique( TechniqueItem techniqueItem ) {
-		AttackTechnique attackTechnique = new AttackTechnique();
-		attackTechnique.setDescription(techniqueItem.getDescription());
-		attackTechnique.setMitreId(techniqueItem.getMitreId());
-		attackTechnique.setModel(techniqueItem.getModel());
-		attackTechnique.setSubModel(techniqueItem.getSubModel());
-		attackTechnique.setName(techniqueItem.getName());
-		attackTechnique.setParentMitreId(techniqueItem.getParentMitreId());
-		attackTechnique.setTactic(techniqueItem.getTactic());
-		attackTechnique.setTreeLevel(techniqueItem.getTreeLevel());
-		return attackTechnique;
-	}
-	
-	// wrapper to convert techinqueGroup to DefendTechniqueGroup
-	public DefendTechniqueGroup convertDefendTechniqueGroup( TechniqueGroup techniqueGroup ) {
-		DefendTechniqueGroup defendTechniqueGroup = new DefendTechniqueGroup();
-		defendTechniqueGroup.setDescription(techniqueGroup.getDescription());
-		defendTechniqueGroup.setMitreId(techniqueGroup.getMitreId());
-		defendTechniqueGroup.setModel(techniqueGroup.getModel());
-		defendTechniqueGroup.setSubModel(techniqueGroup.getSubModel());
-		defendTechniqueGroup.setName(techniqueGroup.getName());
-		defendTechniqueGroup.setParentMitreId(techniqueGroup.getParentMitreId());
-		defendTechniqueGroup.setTactic(techniqueGroup.getTactic());
-		defendTechniqueGroup.setTreeLevel(techniqueGroup.getTreeLevel());
-		return defendTechniqueGroup;
-	}
-	
-	// wrapper to convert techniqueGroup to AttackTechniqueGroup
-	public AttackTechniqueGroup convertAttackTechniqueGroup( TechniqueGroup techniqueGroup ) {
-		AttackTechniqueGroup attackTechniqueGroup = new AttackTechniqueGroup();
-		attackTechniqueGroup.setDescription(techniqueGroup.getDescription());
-		attackTechniqueGroup.setMitreId(techniqueGroup.getMitreId());
-		attackTechniqueGroup.setModel(techniqueGroup.getModel());
-		attackTechniqueGroup.setSubModel(techniqueGroup.getSubModel());
-		attackTechniqueGroup.setName(techniqueGroup.getName());
-		attackTechniqueGroup.setParentMitreId(techniqueGroup.getParentMitreId());
-		attackTechniqueGroup.setTactic(techniqueGroup.getTactic());
-		attackTechniqueGroup.setTreeLevel(techniqueGroup.getTreeLevel());
-		return attackTechniqueGroup;
-	}
 	
 	public void addSingleTechniques(List<TechniqueItem> techniques) {
 		// build and load attack techniques
 		List<AttackTechnique> attackTechniques = techniques
 				.stream()
 				.filter(technique -> technique.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString()))
-				.map(technique -> { return( convertAttackTechnique( technique ) ); })
+				.map(technique -> { return( techniqueConverter.convertAttackTechnique(technique) ); })
 				.collect(Collectors.toList());		
 		attackTechniqueRepo.saveAll(attackTechniques);
 		// build and load defend techniques
 		List<DefendTechnique> defendTechniques = techniques
 				.stream()
 				.filter(technique -> technique.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString()))
-				.map(technique -> { return( convertDefendTechnique( technique ) ); })
+				.map(technique -> { return( techniqueConverter.convertDefendTechnique(technique) ); })
 				.collect(Collectors.toList());
 		defendTechniqueRepo.saveAll(defendTechniques);
 	}
@@ -117,21 +66,29 @@ public class TechniqueService {
 		List<AttackTechniqueGroup> attackTechniqueGroups = composites
 				.stream()
 				.filter(composite -> composite.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString()))
-				.map(composite -> { return( convertAttackTechniqueGroup( composite ) ); })
+				.map(composite -> { return( techniqueConverter.convertAttackTechniqueGroup( composite ) ); })
 				.collect(Collectors.toList());	
 		attackTechniqueGroupRepo.saveAll(attackTechniqueGroups);
 		// build and load attack technique groups
 		List<DefendTechniqueGroup> defendTechniqueGroups = composites
 				.stream()
 				.filter(composite -> composite.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString()))
-				.map(composite -> { return( convertDefendTechniqueGroup( composite ) ); })
+				.map(composite -> { return( techniqueConverter.convertDefendTechniqueGroup( composite ) ); })
 				.collect(Collectors.toList());	
 		defendTechniqueGroupRepo.saveAll(defendTechniqueGroups);
 	}
 	
 	public void deleteAllTechniques() {
+		this.deleteTechniqueItems();
+		this.deleteTechniqueGroups();
+	}
+	
+	private void deleteTechniqueItems() {
 		attackTechniqueRepo.deleteAll();
 		defendTechniqueRepo.deleteAll();
+	}
+	
+	private void deleteTechniqueGroups() {
 		attackTechniqueGroupRepo.deleteAll();
 		defendTechniqueGroupRepo.deleteAll();
 	}
@@ -156,7 +113,7 @@ public class TechniqueService {
 			// save updated composite as applicable
 			if(composite.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString())) {
 				attackTechniqueGroupRepo.save((AttackTechniqueGroup) composite);
-			} else if (composite.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString())) { // else get defend children
+			} else if (composite.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString())) {
 				defendTechniqueGroupRepo.save((DefendTechniqueGroup) composite);
 			}
 		});

@@ -15,8 +15,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Node("Technique")
 @EqualsAndHashCode(callSuper=true)
 public class Neo4jTechnique extends TechniqueItem {	
