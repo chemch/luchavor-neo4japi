@@ -52,14 +52,14 @@ public class TechniqueService {
 		// build and load attack techniques
 		List<AttackTechnique> attackTechniques = techniques
 				.stream()
-				.filter(technique -> technique.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString()))
+				.filter(technique -> technique.getModel().equals(ModelType.ATTACK))
 				.map(technique -> { return( techniqueConverter.toAttackTechnique(technique) ); })
 				.collect(Collectors.toList());		
 		attackTechniqueRepo.saveAll(attackTechniques);
 		// build and load defend techniques
 		List<DefendTechnique> defendTechniques = techniques
 				.stream()
-				.filter(technique -> technique.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString()))
+				.filter(technique -> technique.getModel().equals(ModelType.DEFEND))
 				.map(technique -> { return( techniqueConverter.toDefendTechnique(technique) ); })
 				.collect(Collectors.toList());
 		defendTechniqueRepo.saveAll(defendTechniques);
@@ -69,14 +69,14 @@ public class TechniqueService {
 		// build and load attack technique groups
 		List<AttackTechniqueGroup> attackTechniqueGroups = composites
 				.stream()
-				.filter(composite -> composite.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString()))
+				.filter(composite -> composite.getModel().equals(ModelType.ATTACK))
 				.map(composite -> { return( techniqueConverter.toAttackTechniqueGroup( composite ) ); })
 				.collect(Collectors.toList());	
 		attackTechniqueGroupRepo.saveAll(attackTechniqueGroups);
 		// build and load attack technique groups
 		List<DefendTechniqueGroup> defendTechniqueGroups = composites
 				.stream()
-				.filter(composite -> composite.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString()))
+				.filter(composite -> composite.getModel().equals(ModelType.DEFEND))
 				.map(composite -> { return( techniqueConverter.toDefendTechniqueGroup( composite ) ); })
 				.collect(Collectors.toList());	
 		defendTechniqueGroupRepo.saveAll(defendTechniqueGroups);
@@ -98,32 +98,32 @@ public class TechniqueService {
 	}
 	
 	public void buildTechniqueRelations() {
-		try {
 			// get all composites
 			Iterable<TechniqueGroup> composites = techniqueGroupRepo.findAll();
 			// loop through composites adding children along the way
-			composites.forEach(composite -> {
-				// get children (both composite children and single children)
-				List<Technique> children = new ArrayList<>();
-				// get attack children if the composite is an attackTechniqueGroup
-				if(composite.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString())) {
-					children.addAll(attackTechniqueRepo.findByParentMitreId(composite.getMitreId()));
-					children.addAll(attackTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
-				} else if (composite.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString())) { // else get defend children
-					children.addAll(defendTechniqueRepo.findByParentMitreId(composite.getMitreId()));
-					children.addAll(defendTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
+			for(TechniqueGroup composite : composites){
+				try {
+					// get children (both composite children and single children)
+					List<Technique> children = new ArrayList<>();
+					// get attack children if the composite is an attackTechniqueGroup
+					if(composite.getModel().equals(ModelType.ATTACK)) {
+						children.addAll(attackTechniqueRepo.findByParentMitreId(composite.getMitreId()));
+						children.addAll(attackTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
+					} else if (composite.getModel().equals(ModelType.DEFEND)) { // else get defend children
+						children.addAll(defendTechniqueRepo.findByParentMitreId(composite.getMitreId()));
+						children.addAll(defendTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
+					}
+					// add children
+					children.forEach(child -> { composite.add(child); });
+					// save updated composite as applicable
+					if(composite.getModel().equals(ModelType.ATTACK)) {
+						attackTechniqueGroupRepo.save((AttackTechniqueGroup) composite);
+					} else if (composite.getModel().equals(ModelType.DEFEND)) {
+						defendTechniqueGroupRepo.save((DefendTechniqueGroup) composite);
+					}
+				} catch (Exception e) {
+					log.error(e.toString());
 				}
-				// add children
-				children.forEach(child -> { composite.add(child); });
-				// save updated composite as applicable
-				if(composite.getModel().toString().equalsIgnoreCase(ModelType.ATTACK.toString())) {
-					attackTechniqueGroupRepo.save((AttackTechniqueGroup) composite);
-				} else if (composite.getModel().toString().equalsIgnoreCase(ModelType.DEFEND.toString())) {
-					defendTechniqueGroupRepo.save((DefendTechniqueGroup) composite);
-				}
-			});
-		} catch (Exception e) {
-			log.error(e.toString());
-		}
+			}		
 	}
 }

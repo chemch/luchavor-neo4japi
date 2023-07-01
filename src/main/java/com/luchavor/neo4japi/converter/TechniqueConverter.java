@@ -18,7 +18,7 @@ public class TechniqueConverter {
 		DefendTechnique converted = new DefendTechnique();
 		converted.setDescription(techniqueItem.getDescription());
 		converted.setMitreId(techniqueItem.getMitreId());
-		converted.setModel(ModelType.DEFEND.toString());
+		converted.setModel(ModelType.DEFEND);
 		converted.setSubModel(techniqueItem.getSubModel());
 		converted.setName(techniqueItem.getName());
 		converted.setParentMitreId(techniqueItem.getParentMitreId());
@@ -32,7 +32,7 @@ public class TechniqueConverter {
 		AttackTechnique converted = new AttackTechnique();
 		converted.setDescription(techniqueItem.getDescription());
 		converted.setMitreId(techniqueItem.getMitreId());
-		converted.setModel(ModelType.ATTACK.toString());
+		converted.setModel(ModelType.ATTACK);
 		converted.setSubModel(techniqueItem.getSubModel());
 		converted.setName(techniqueItem.getName());
 		converted.setParentMitreId(techniqueItem.getParentMitreId());
@@ -46,7 +46,7 @@ public class TechniqueConverter {
 		DefendTechniqueGroup converted = new DefendTechniqueGroup();
 		converted.setDescription(techniqueGroup.getDescription());
 		converted.setMitreId(techniqueGroup.getMitreId());
-		converted.setModel(ModelType.DEFEND.toString());
+		converted.setModel(ModelType.DEFEND);
 		converted.setSubModel(techniqueGroup.getSubModel());
 		converted.setName(techniqueGroup.getName());
 		converted.setParentMitreId(techniqueGroup.getParentMitreId());
@@ -60,7 +60,7 @@ public class TechniqueConverter {
 		AttackTechniqueGroup converted = new AttackTechniqueGroup();
 		converted.setDescription(techniqueGroup.getDescription());
 		converted.setMitreId(techniqueGroup.getMitreId());
-		converted.setModel(ModelType.ATTACK.toString());
+		converted.setModel(ModelType.ATTACK);
 		converted.setSubModel(techniqueGroup.getSubModel());
 		converted.setName(techniqueGroup.getName());
 		converted.setParentMitreId(techniqueGroup.getParentMitreId());
