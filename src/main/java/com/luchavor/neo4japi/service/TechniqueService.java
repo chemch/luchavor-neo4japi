@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luchavor.neo4japi.converter.TechniqueConverter;
-import com.luchavor.neo4japi.model.AttackTechnique;
-import com.luchavor.neo4japi.model.AttackTechniqueGroup;
-import com.luchavor.neo4japi.model.DefendTechniqueGroup;
-import com.luchavor.neo4japi.model.DefendTechnique;
-import com.luchavor.neo4japi.model.TechniqueGroup;
-import com.luchavor.neo4japi.persistence.AttackTechniqueGroupRepo;
-import com.luchavor.neo4japi.persistence.AttackTechniqueRepo;
-import com.luchavor.neo4japi.persistence.DefendTechniqueGroupRepo;
-import com.luchavor.neo4japi.persistence.DefendTechniqueRepo;
-import com.luchavor.neo4japi.persistence.TechniqueGroupRepo;
+import com.luchavor.neo4japi.model.technique.AttackTechnique;
+import com.luchavor.neo4japi.model.technique.DefendTechnique;
+import com.luchavor.neo4japi.model.techniquegroup.AttackTechniqueGroup;
+import com.luchavor.neo4japi.model.techniquegroup.DefendTechniqueGroup;
+import com.luchavor.neo4japi.model.techniquegroup.TechniqueGroup;
+import com.luchavor.neo4japi.persistence.technique.AttackTechniqueRepo;
+import com.luchavor.neo4japi.persistence.technique.DefendTechniqueRepo;
+import com.luchavor.neo4japi.persistence.techniquegroup.AttackTechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.techniquegroup.TechniqueGroupRepo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +46,6 @@ public class TechniqueService {
 	
 	@Autowired
 	TechniqueConverter techniqueConverter;
-
 	
 	public void addSingleTechniques(List<TechniqueItem> techniques) {
 		// build and load attack techniques
@@ -122,7 +121,7 @@ public class TechniqueService {
 						defendTechniqueGroupRepo.save((DefendTechniqueGroup) composite);
 					}
 				} catch (Exception e) {
-					log.error(e.toString());
+					log.warn(e.toString());
 				}
 			}		
 	}

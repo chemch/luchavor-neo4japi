@@ -1,4 +1,4 @@
-package com.luchavor.neo4japi.model;
+package com.luchavor.neo4japi.model.techniquegroup;
 
 import org.springframework.data.neo4j.core.schema.Node;
 

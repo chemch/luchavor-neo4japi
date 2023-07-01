@@ -1,5 +1,4 @@
-package com.luchavor.neo4japi.model;
-
+package com.luchavor.neo4japi.model.technique;
 
 import java.util.UUID;
 
@@ -14,9 +13,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Data
-@Node("Technique")
-@EqualsAndHashCode(callSuper=true)
 public class Neo4jTechnique extends TechniqueItem {	
 	// neo4j id
 	@Id @GeneratedValue private UUID id;

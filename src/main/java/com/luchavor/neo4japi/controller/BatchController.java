@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.luchavor.neo4japi.model.TechniqueGroup;
 import com.luchavor.datamodel.technique.TechniqueItem;
+import com.luchavor.neo4japi.model.techniquegroup.TechniqueGroup;
 import com.luchavor.neo4japi.service.TechniqueService;
 
 import lombok.extern.slf4j.Slf4j;

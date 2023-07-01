@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.luchavor.neo4japi.persistence.AttackTechniqueGroupRepo;
-import com.luchavor.neo4japi.persistence.AttackTechniqueRepo;
-import com.luchavor.neo4japi.persistence.DefendTechniqueGroupRepo;
-import com.luchavor.neo4japi.persistence.DefendTechniqueRepo;
-import com.luchavor.neo4japi.persistence.TechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.technique.AttackTechniqueRepo;
+import com.luchavor.neo4japi.persistence.technique.DefendTechniqueRepo;
+import com.luchavor.neo4japi.persistence.techniquegroup.AttackTechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo;
+import com.luchavor.neo4japi.persistence.techniquegroup.TechniqueGroupRepo;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
