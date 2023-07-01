@@ -5,16 +5,16 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>3.1.1</version>
 		<relativePath/> 
 	</parent>
 	<groupId>com.luchavor</groupId>
 	<artifactId>neo4japi</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.3</version>
 	<name>neo4j-api</name>
 	<description>Rest API to Neo4j Database</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>20</java.version>		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>com.luchavor</groupId>
 			<artifactId>datamodel</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.3</version>
 		</dependency>
 	</dependencies>
 	<build>
