@@ -8,13 +8,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 import com.luchavor.neo4japi.persistence.technique.AttackTechniqueRepo;
 import com.luchavor.neo4japi.persistence.technique.DefendTechniqueRepo;
 import com.luchavor.neo4japi.persistence.techniquegroup.AttackTechniqueGroupRepo;
 import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo;
-import com.luchavor.neo4japi.persistence.techniquegroup.TechniqueGroupRepo;
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
@@ -38,9 +35,6 @@ class ApplicationTests {
 	
 	@Autowired
 	DefendTechniqueGroupRepo defendTechniqueGroupRepo;
-	
-	@Autowired
-	TechniqueGroupRepo techniqueGroupRepo;
 
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {

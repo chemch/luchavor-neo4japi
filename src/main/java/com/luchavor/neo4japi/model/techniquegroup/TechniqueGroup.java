@@ -12,7 +12,6 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import com.luchavor.datamodel.technique.Technique;
 import com.luchavor.datamodel.technique.AbstractTechnique;
 
-@Node("TechniqueGroup")
 public class TechniqueGroup extends AbstractTechnique {
 	
 	// neo4j id

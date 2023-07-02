@@ -17,7 +17,6 @@ import com.luchavor.neo4japi.persistence.technique.AttackTechniqueRepo;
 import com.luchavor.neo4japi.persistence.technique.DefendTechniqueRepo;
 import com.luchavor.neo4japi.persistence.techniquegroup.AttackTechniqueGroupRepo;
 import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo;
-import com.luchavor.neo4japi.persistence.techniquegroup.TechniqueGroupRepo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,19 +41,14 @@ public class TechniqueService {
 	DefendTechniqueGroupRepo defendTechniqueGroupRepo;
 	
 	@Autowired
-	TechniqueGroupRepo techniqueGroupRepo;
-	
-	@Autowired
 	TechniqueConverter techniqueConverter;
 	
 	public void addSingleTechniques(List<TechniqueItem> techniques) {
-		// build and load attack techniques
-		List<AttackTechnique> attackTechniques = techniques
-				.stream()
-				.filter(technique -> technique.getModel().equals(ModelType.ATTACK))
-				.map(technique -> { return( techniqueConverter.toAttackTechnique(technique) ); })
-				.collect(Collectors.toList());		
-		attackTechniqueRepo.saveAll(attackTechniques);
+		this.addSingleAttackTechniques(techniques);
+		this.addSingleDefendTechniques(techniques);
+	}
+	
+	private void addSingleDefendTechniques(List<TechniqueItem> techniques) {
 		// build and load defend techniques
 		List<DefendTechnique> defendTechniques = techniques
 				.stream()
@@ -64,7 +58,22 @@ public class TechniqueService {
 		defendTechniqueRepo.saveAll(defendTechniques);
 	}
 	
+	private void addSingleAttackTechniques(List<TechniqueItem> techniques) {
+		// build and load attack techniques
+		List<AttackTechnique> attackTechniques = techniques
+				.stream()
+				.filter(technique -> technique.getModel().equals(ModelType.ATTACK))
+				.map(technique -> { return( techniqueConverter.toAttackTechnique(technique) ); })
+				.collect(Collectors.toList());		
+		attackTechniqueRepo.saveAll(attackTechniques);
+	}
+	
 	public void addCompositeTechniques(List<TechniqueGroup> composites) {
+		this.addCompositeAttackTechniques(composites);
+		this.addCompositeDefendTechniques(composites);
+	}
+	
+	private void addCompositeAttackTechniques(List<TechniqueGroup> composites) { 
 		// build and load attack technique groups
 		List<AttackTechniqueGroup> attackTechniqueGroups = composites
 				.stream()
@@ -72,6 +81,9 @@ public class TechniqueService {
 				.map(composite -> { return( techniqueConverter.toAttackTechniqueGroup( composite ) ); })
 				.collect(Collectors.toList());	
 		attackTechniqueGroupRepo.saveAll(attackTechniqueGroups);
+	}
+	
+	private void addCompositeDefendTechniques(List<TechniqueGroup> composites) { 
 		// build and load attack technique groups
 		List<DefendTechniqueGroup> defendTechniqueGroups = composites
 				.stream()
@@ -96,33 +108,48 @@ public class TechniqueService {
 		defendTechniqueGroupRepo.deleteAll();
 	}
 	
+	private void buildAttackTechniqueRelations() {
+		// get all composites
+		Iterable<AttackTechniqueGroup> composites = attackTechniqueGroupRepo.findAll();
+		// loop through composites adding children along the way
+		for(AttackTechniqueGroup composite : composites){
+			try {
+				// get children (both composite children and single children)
+				List<Technique> children = new ArrayList<>();
+				children.addAll(attackTechniqueRepo.findByParentMitreId(composite.getMitreId()));
+				children.addAll(attackTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
+				// add children
+				children.forEach(child -> { composite.add(child); });
+				// save updated composite relations
+				attackTechniqueGroupRepo.save(composite);
+			} catch (Exception e) {
+				log.warn(e.toString());
+			}
+		}
+	}
+	
+	private void buildDefendTechniqueRelations() {
+		// get all composites
+		Iterable<DefendTechniqueGroup> composites = defendTechniqueGroupRepo.findAll();
+		// loop through composites adding children along the way
+		for(DefendTechniqueGroup composite : composites){
+			try {
+				// get children (both composite children and single children)
+				List<Technique> children = new ArrayList<>();
+				children.addAll(defendTechniqueRepo.findByParentMitreId(composite.getMitreId()));
+				children.addAll(defendTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
+				// add children
+				children.forEach(child -> { composite.add(child); });
+				// save updated composite relations
+				defendTechniqueGroupRepo.save(composite);
+			} catch (Exception e) {
+				log.warn(e.toString());
+			}
+		}
+	}
+	
 	public void buildTechniqueRelations() {
-			// get all composites
-			Iterable<TechniqueGroup> composites = techniqueGroupRepo.findAll();
-			// loop through composites adding children along the way
-			for(TechniqueGroup composite : composites){
-				try {
-					// get children (both composite children and single children)
-					List<Technique> children = new ArrayList<>();
-					// get attack children if the composite is an attackTechniqueGroup
-					if(composite.getModel().equals(ModelType.ATTACK)) {
-						children.addAll(attackTechniqueRepo.findByParentMitreId(composite.getMitreId()));
-						children.addAll(attackTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
-					} else if (composite.getModel().equals(ModelType.DEFEND)) { // else get defend children
-						children.addAll(defendTechniqueRepo.findByParentMitreId(composite.getMitreId()));
-						children.addAll(defendTechniqueGroupRepo.findByParentMitreId(composite.getMitreId()));
-					}
-					// add children
-					children.forEach(child -> { composite.add(child); });
-					// save updated composite as applicable
-					if(composite.getModel().equals(ModelType.ATTACK)) {
-						attackTechniqueGroupRepo.save((AttackTechniqueGroup) composite);
-					} else if (composite.getModel().equals(ModelType.DEFEND)) {
-						defendTechniqueGroupRepo.save((DefendTechniqueGroup) composite);
-					}
-				} catch (Exception e) {
-					log.warn(e.toString());
-				}
-			}		
+		this.buildDefendTechniqueRelations();		
+		this.buildAttackTechniqueRelations();
 	}
 }
