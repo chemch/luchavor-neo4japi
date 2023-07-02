@@ -15,9 +15,6 @@ import com.luchavor.datamodel.technique.AbstractTechnique;
 @Node("TechniqueGroup")
 public class TechniqueGroup extends AbstractTechnique {
 	
-	@SuppressWarnings("unused")
-	private static final Logger log = LoggerFactory.getLogger(TechniqueGroup.class);
-	
 	// neo4j id
 	@Id @GeneratedValue 
 	private UUID id;

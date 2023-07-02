@@ -18,11 +18,13 @@ public class RelationController {
 	@Autowired
 	TechniqueService techniqueService;
 	
+	// tag::techniqueRelationController[]
 	@PostMapping("/technique")
 	@ResponseBody
 	public ResponseEntity<String> addTechniqueRelations() {
-		log.info("Building Technique Composite Relationships to Children");
+		log.debug("Starting to build Technique Item to Technique Group mappings");
 		techniqueService.buildTechniqueRelations();
 		return new ResponseEntity<>(HttpStatus.OK); 
 	}
+	// end::techniqueRelationController[]
 }

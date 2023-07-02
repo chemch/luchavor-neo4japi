@@ -26,11 +26,11 @@ public class BatchController {
 	@Autowired
 	TechniqueService techniqueService;
 
-	// tag::technique[]
+	// tag::techniqueBatchController[]
 	@PostMapping("/single-technique")
 	@ResponseBody
 	public ResponseEntity<String> addSingleTechniques(@RequestBody List<TechniqueItem> techniques) {
-		log.info("Batch Upload of Single Techniques: Size: " + techniques.size() + " Techniques");
+		log.debug("Batch Upload of " + techniques.size() + " Technique Items");
 		techniqueService.addSingleTechniques(techniques);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -38,7 +38,7 @@ public class BatchController {
 	@PostMapping("/composite-technique")
 	@ResponseBody
 	public ResponseEntity<String> addCompositeTechniques(@RequestBody List<TechniqueGroup> composites) {
-		log.info("Batch Upload of Composite Techniques: Size: " + composites.size() + " Techniques");
+		log.debug("Batch Upload of " + composites.size() + " Technique Groups");
 		techniqueService.addCompositeTechniques(composites);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -48,5 +48,5 @@ public class BatchController {
 		techniqueService.deleteAllTechniques();
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	// end::technique[]
+	// end::techniqueBatchController[]
 }
