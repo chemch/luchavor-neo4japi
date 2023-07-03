@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.luchavor.datamodel.technique.TechniqueItem;
+import com.luchavor.neo4japi.model.event.Neo4jConnection;
 import com.luchavor.neo4japi.model.techniquegroup.TechniqueGroup;
+import com.luchavor.neo4japi.service.EventService;
 import com.luchavor.neo4japi.service.TechniqueService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,9 @@ public class BatchController {
 	
 	@Autowired
 	TechniqueService techniqueService;
+	
+	@Autowired
+	EventService eventService;
 
 	// tag::techniqueBatchController[]
 	@PostMapping("/single-technique")
@@ -49,4 +53,14 @@ public class BatchController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	// end::techniqueBatchController[]
+	
+	// tag::eventBatchController[]
+	@PostMapping("/connection")
+	@ResponseBody
+	public ResponseEntity<String> addConnectionEvents(@RequestBody List<Neo4jConnection> connections) {
+		log.debug("Batch Upload of " + connections.size() + " Connection Events");
+		eventService.addConnectionEvents(connections);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	// end::eventBatchController[]
 }
