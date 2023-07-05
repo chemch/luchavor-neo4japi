@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.luchavor.datamodel.technique.TechniqueItem;
 import com.luchavor.neo4japi.model.event.Neo4jConnection;
+import com.luchavor.neo4japi.model.event.Neo4jDnsEvent;
 import com.luchavor.neo4japi.model.techniquegroup.TechniqueGroup;
 import com.luchavor.neo4japi.service.EventService;
 import com.luchavor.neo4japi.service.TechniqueService;
@@ -58,8 +59,16 @@ public class BatchController {
 	@PostMapping("/connection")
 	@ResponseBody
 	public ResponseEntity<String> addConnectionEvents(@RequestBody List<Neo4jConnection> connections) {
-		log.debug("Batch Upload of " + connections.size() + " Connection Events");
+		log.debug("Batch Upload of " + connections.size() + " Events");
 		eventService.addConnectionEvents(connections);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PostMapping("/dns")
+	@ResponseBody
+	public ResponseEntity<String> addDnsEvents(@RequestBody List<Neo4jDnsEvent> dnsEvents) {
+		log.debug("Batch Upload of " + dnsEvents.size() + " Events");
+		eventService.addDnsEvents(dnsEvents);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	// end::eventBatchController[]

@@ -5,11 +5,10 @@ import java.util.UUID;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
+import com.luchavor.datamodel.event.dns.DnsEvent;
 
-import com.luchavor.datamodel.event.connection.ConnectionImpl;
-
-@Node("Connection")
-public class Neo4jConnection extends ConnectionImpl {
+@Node("DnsEvent")
+public class Neo4jDnsEvent extends DnsEvent {
 	// neo4j id
 	@Id @GeneratedValue private UUID id;
 }
