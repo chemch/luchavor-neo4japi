@@ -4,11 +4,11 @@ import org.springframework.stereotype.Component;
 
 import com.luchavor.datamodel.mitre.ModelType;
 import com.luchavor.datamodel.technique.TechniqueItem;
+import com.luchavor.datamodel.techniquegroup.TechniqueGroup;
 import com.luchavor.neo4japi.model.technique.AttackTechnique;
 import com.luchavor.neo4japi.model.technique.DefendTechnique;
 import com.luchavor.neo4japi.model.techniquegroup.AttackTechniqueGroup;
 import com.luchavor.neo4japi.model.techniquegroup.DefendTechniqueGroup;
-import com.luchavor.neo4japi.model.techniquegroup.TechniqueGroup;
 
 @Component
 public class TechniqueConverter {	
@@ -23,7 +23,6 @@ public class TechniqueConverter {
 		converted.setName(techniqueItem.getName());
 		converted.setParentMitreId(techniqueItem.getParentMitreId());
 		converted.setTactic(techniqueItem.getTactic());
-		converted.setTreeLevel(techniqueItem.getTreeLevel());
 		return converted;
 	}
 	
@@ -37,7 +36,6 @@ public class TechniqueConverter {
 		converted.setName(techniqueItem.getName());
 		converted.setParentMitreId(techniqueItem.getParentMitreId());
 		converted.setTactic(techniqueItem.getTactic());
-		converted.setTreeLevel(techniqueItem.getTreeLevel());
 		return converted;
 	}
 	
@@ -51,7 +49,6 @@ public class TechniqueConverter {
 		converted.setName(techniqueGroup.getName());
 		converted.setParentMitreId(techniqueGroup.getParentMitreId());
 		converted.setTactic(techniqueGroup.getTactic());
-		converted.setTreeLevel(techniqueGroup.getTreeLevel());
 		return converted;
 	}
 	
@@ -65,7 +62,6 @@ public class TechniqueConverter {
 		converted.setName(techniqueGroup.getName());
 		converted.setParentMitreId(techniqueGroup.getParentMitreId());
 		converted.setTactic(techniqueGroup.getTactic());
-		converted.setTreeLevel(techniqueGroup.getTreeLevel());
 		return converted;
 	}
 }

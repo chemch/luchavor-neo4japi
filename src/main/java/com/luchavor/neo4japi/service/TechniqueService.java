@@ -12,7 +12,6 @@ import com.luchavor.neo4japi.model.technique.AttackTechnique;
 import com.luchavor.neo4japi.model.technique.DefendTechnique;
 import com.luchavor.neo4japi.model.techniquegroup.AttackTechniqueGroup;
 import com.luchavor.neo4japi.model.techniquegroup.DefendTechniqueGroup;
-import com.luchavor.neo4japi.model.techniquegroup.TechniqueGroup;
 import com.luchavor.neo4japi.persistence.technique.AttackTechniqueRepo;
 import com.luchavor.neo4japi.persistence.technique.DefendTechniqueRepo;
 import com.luchavor.neo4japi.persistence.techniquegroup.AttackTechniqueGroupRepo;
@@ -21,6 +20,7 @@ import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo
 import lombok.extern.slf4j.Slf4j;
 
 import com.luchavor.datamodel.technique.TechniqueItem;
+import com.luchavor.datamodel.techniquegroup.TechniqueGroup;
 import com.luchavor.datamodel.mitre.ModelType;
 import com.luchavor.datamodel.technique.Technique;
 
