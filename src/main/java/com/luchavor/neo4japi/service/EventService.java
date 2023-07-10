@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.luchavor.neo4japi.model.event.Neo4jConnection;
-import com.luchavor.neo4japi.model.event.Neo4jDnsEvent;
+import com.luchavor.datamodel.artifact.network.session.connection.ConnectionImpl;
+import com.luchavor.datamodel.artifact.network.session.dns.DnsEventImpl;
 import com.luchavor.neo4japi.persistence.event.ConnectionRepo;
 import com.luchavor.neo4japi.persistence.event.DnsEventRepo;
 
@@ -18,11 +18,11 @@ public class EventService {
 	@Autowired
 	DnsEventRepo dnsEventRepo;
 	
-	public void addConnectionEvents(List<Neo4jConnection> connections) {
+	public void addConnectionEvents(List<ConnectionImpl> connections) {
 		connectionRepo.saveAll(connections);
 	}
 	
-	public void addDnsEvents(List<Neo4jDnsEvent> events) {
+	public void addDnsEvents(List<DnsEventImpl> events) {
 		dnsEventRepo.saveAll(events);
 	}
 }

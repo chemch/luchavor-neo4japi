@@ -19,8 +19,8 @@ import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.luchavor.datamodel.technique.TechniqueItem;
-import com.luchavor.datamodel.techniquegroup.TechniqueGroup;
+import com.luchavor.datamodel.technique.TechniqueImpl;
+import com.luchavor.datamodel.techniquegroup.TechniqueGroupImpl;
 import com.luchavor.datamodel.mitre.ModelType;
 import com.luchavor.datamodel.technique.Technique;
 
@@ -43,12 +43,12 @@ public class TechniqueService {
 	@Autowired
 	TechniqueConverter techniqueConverter;
 	
-	public void addSingleTechniques(List<TechniqueItem> techniques) {
+	public void addSingleTechniques(List<TechniqueImpl> techniques) {
 		this.addSingleAttackTechniques(techniques);
 		this.addSingleDefendTechniques(techniques);
 	}
 	
-	private void addSingleDefendTechniques(List<TechniqueItem> techniques) {
+	private void addSingleDefendTechniques(List<TechniqueImpl> techniques) {
 		// build and load defend techniques
 		List<DefendTechnique> defendTechniques = techniques
 				.stream()
@@ -58,7 +58,7 @@ public class TechniqueService {
 		defendTechniqueRepo.saveAll(defendTechniques);
 	}
 	
-	private void addSingleAttackTechniques(List<TechniqueItem> techniques) {
+	private void addSingleAttackTechniques(List<TechniqueImpl> techniques) {
 		// build and load attack techniques
 		List<AttackTechnique> attackTechniques = techniques
 				.stream()
@@ -68,12 +68,12 @@ public class TechniqueService {
 		attackTechniqueRepo.saveAll(attackTechniques);
 	}
 	
-	public void addCompositeTechniques(List<TechniqueGroup> composites) {
+	public void addCompositeTechniques(List<TechniqueGroupImpl> composites) {
 		this.addCompositeAttackTechniques(composites);
 		this.addCompositeDefendTechniques(composites);
 	}
 	
-	private void addCompositeAttackTechniques(List<TechniqueGroup> composites) { 
+	private void addCompositeAttackTechniques(List<TechniqueGroupImpl> composites) { 
 		// build and load attack technique groups
 		List<AttackTechniqueGroup> attackTechniqueGroups = composites
 				.stream()
@@ -83,7 +83,7 @@ public class TechniqueService {
 		attackTechniqueGroupRepo.saveAll(attackTechniqueGroups);
 	}
 	
-	private void addCompositeDefendTechniques(List<TechniqueGroup> composites) { 
+	private void addCompositeDefendTechniques(List<TechniqueGroupImpl> composites) { 
 		// build and load attack technique groups
 		List<DefendTechniqueGroup> defendTechniqueGroups = composites
 				.stream()

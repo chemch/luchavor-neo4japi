@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.luchavor.datamodel.technique.TechniqueItem;
-import com.luchavor.datamodel.techniquegroup.TechniqueGroup;
-import com.luchavor.neo4japi.model.event.Neo4jConnection;
-import com.luchavor.neo4japi.model.event.Neo4jDnsEvent;
+import com.luchavor.datamodel.technique.TechniqueImpl;
+import com.luchavor.datamodel.techniquegroup.TechniqueGroupImpl;
 import com.luchavor.neo4japi.service.EventService;
 import com.luchavor.neo4japi.service.TechniqueService;
 
@@ -34,7 +32,7 @@ public class BatchController {
 	// tag::techniqueBatchController[]
 	@PostMapping("/single-technique")
 	@ResponseBody
-	public ResponseEntity<String> addSingleTechniques(@RequestBody List<TechniqueItem> techniques) {
+	public ResponseEntity<String> addSingleTechniques(@RequestBody List<TechniqueImpl> techniques) {
 		log.debug("Batch Upload of " + techniques.size() + " Technique Items");
 		techniqueService.addSingleTechniques(techniques);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -42,7 +40,7 @@ public class BatchController {
 	
 	@PostMapping("/composite-technique")
 	@ResponseBody
-	public ResponseEntity<String> addCompositeTechniques(@RequestBody List<TechniqueGroup> composites) {
+	public ResponseEntity<String> addCompositeTechniques(@RequestBody List<TechniqueGroupImpl> composites) {
 		log.debug("Batch Upload of " + composites.size() + " Technique Groups");
 		techniqueService.addCompositeTechniques(composites);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -54,22 +52,4 @@ public class BatchController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	// end::techniqueBatchController[]
-	
-	// tag::eventBatchController[]
-	@PostMapping("/connection")
-	@ResponseBody
-	public ResponseEntity<String> addConnectionEvents(@RequestBody List<Neo4jConnection> connections) {
-		log.debug("Batch Upload of " + connections.size() + " Events");
-		eventService.addConnectionEvents(connections);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-	
-	@PostMapping("/dns")
-	@ResponseBody
-	public ResponseEntity<String> addDnsEvents(@RequestBody List<Neo4jDnsEvent> dnsEvents) {
-		log.debug("Batch Upload of " + dnsEvents.size() + " Events");
-		eventService.addDnsEvents(dnsEvents);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-	// end::eventBatchController[]
 }
