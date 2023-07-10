@@ -19,9 +19,9 @@ import com.luchavor.neo4japi.service.TechniqueService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/batch")
+@RequestMapping("/technique")
 @Slf4j
-public class BatchController {
+public class TechniqueController {
 	
 	@Autowired
 	TechniqueService techniqueService;
@@ -30,7 +30,7 @@ public class BatchController {
 	EventService eventService;
 
 	// tag::techniqueBatchController[]
-	@PostMapping("/single-technique")
+	@PostMapping("/single")
 	@ResponseBody
 	public ResponseEntity<String> addSingleTechniques(@RequestBody List<TechniqueImpl> techniques) {
 		log.debug("Batch Upload of " + techniques.size() + " Technique Items");
@@ -38,7 +38,7 @@ public class BatchController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@PostMapping("/composite-technique")
+	@PostMapping("/composite")
 	@ResponseBody
 	public ResponseEntity<String> addCompositeTechniques(@RequestBody List<TechniqueGroupImpl> composites) {
 		log.debug("Batch Upload of " + composites.size() + " Technique Groups");
@@ -46,10 +46,20 @@ public class BatchController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/technique")
+	@DeleteMapping()
 	public ResponseEntity<String> deleteAllTechniques() {
 		techniqueService.deleteAllTechniques();
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	// end::techniqueBatchController[]
+	
+	// tag::techniqueRelationController[]
+	@PostMapping("/relations")
+	@ResponseBody
+	public ResponseEntity<String> addTechniqueRelations() {
+		log.debug("Starting to build Technique Item to Technique Group mappings");
+		techniqueService.buildTechniqueRelations();
+		return new ResponseEntity<>(HttpStatus.OK); 
+	}
+	// end::techniqueRelationController[]
 }
