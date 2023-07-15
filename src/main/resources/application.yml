@@ -3,6 +3,6 @@ server:
 spring:
   neo4j:
     authentication:
-      password: tbd
-      username: tbd
+      password: P@55w0rd!
+      username: neo4j
     uri: bolt://localhost:7687
