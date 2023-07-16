@@ -14,7 +14,9 @@
 	<name>neo4j-api</name>
 	<description>Rest API to Neo4j Database</description>
 	<properties>
-		<java.version>20</java.version>		
+		<java.version>20</java.version>
+		<maven.compiler.source>20</maven.compiler.source>
+     	<maven.compiler.target>20</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -43,7 +45,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.luchavor</groupId>
 			<artifactId>datamodel</artifactId>

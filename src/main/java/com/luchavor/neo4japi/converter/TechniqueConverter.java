@@ -3,12 +3,12 @@ package com.luchavor.neo4japi.converter;
 import org.springframework.stereotype.Component;
 
 import com.luchavor.datamodel.mitre.ModelType;
+import com.luchavor.datamodel.technique.AttackTechnique;
+import com.luchavor.datamodel.technique.DefendTechnique;
 import com.luchavor.datamodel.technique.TechniqueImpl;
+import com.luchavor.datamodel.techniquegroup.AttackTechniqueGroup;
+import com.luchavor.datamodel.techniquegroup.DefendTechniqueGroup;
 import com.luchavor.datamodel.techniquegroup.TechniqueGroupImpl;
-import com.luchavor.neo4japi.model.technique.AttackTechnique;
-import com.luchavor.neo4japi.model.technique.DefendTechnique;
-import com.luchavor.neo4japi.model.techniquegroup.AttackTechniqueGroup;
-import com.luchavor.neo4japi.model.techniquegroup.DefendTechniqueGroup;
 
 @Component
 public class TechniqueConverter {	

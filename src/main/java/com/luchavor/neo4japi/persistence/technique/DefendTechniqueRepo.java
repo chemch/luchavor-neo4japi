@@ -7,8 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+import com.luchavor.datamodel.technique.DefendTechnique;
 import com.luchavor.datamodel.technique.Technique;
-import com.luchavor.neo4japi.model.technique.DefendTechnique;
 
 @RepositoryRestResource(collectionResourceRel = "defend-technique", path = "defend-technique")
 public interface DefendTechniqueRepo extends PagingAndSortingRepository<DefendTechnique, UUID>, CrudRepository<DefendTechnique, UUID> {

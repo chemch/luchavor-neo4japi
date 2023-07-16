@@ -8,8 +8,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import com.luchavor.datamodel.technique.AttackTechnique;
 import com.luchavor.datamodel.technique.Technique;
-import com.luchavor.neo4japi.model.technique.AttackTechnique;
 
 @RepositoryRestResource(collectionResourceRel = "attack-technique", path = "attack-technique")
 public interface AttackTechniqueRepo extends PagingAndSortingRepository<AttackTechnique, UUID>, CrudRepository<AttackTechnique, UUID> {

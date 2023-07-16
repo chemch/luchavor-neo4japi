@@ -8,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luchavor.neo4japi.converter.TechniqueConverter;
-import com.luchavor.neo4japi.model.technique.AttackTechnique;
-import com.luchavor.neo4japi.model.technique.DefendTechnique;
-import com.luchavor.neo4japi.model.techniquegroup.AttackTechniqueGroup;
-import com.luchavor.neo4japi.model.techniquegroup.DefendTechniqueGroup;
 import com.luchavor.neo4japi.persistence.technique.AttackTechniqueRepo;
 import com.luchavor.neo4japi.persistence.technique.DefendTechniqueRepo;
 import com.luchavor.neo4japi.persistence.techniquegroup.AttackTechniqueGroupRepo;
@@ -20,8 +16,12 @@ import com.luchavor.neo4japi.persistence.techniquegroup.DefendTechniqueGroupRepo
 import lombok.extern.slf4j.Slf4j;
 
 import com.luchavor.datamodel.technique.TechniqueImpl;
+import com.luchavor.datamodel.techniquegroup.AttackTechniqueGroup;
+import com.luchavor.datamodel.techniquegroup.DefendTechniqueGroup;
 import com.luchavor.datamodel.techniquegroup.TechniqueGroupImpl;
 import com.luchavor.datamodel.mitre.ModelType;
+import com.luchavor.datamodel.technique.AttackTechnique;
+import com.luchavor.datamodel.technique.DefendTechnique;
 import com.luchavor.datamodel.technique.Technique;
 
 @Slf4j
