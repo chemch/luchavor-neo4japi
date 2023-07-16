@@ -11,8 +11,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import com.luchavor.datamodel.technique.Technique;
 import com.luchavor.neo4japi.model.technique.AttackTechnique;
 
-@RepositoryRestResource(collectionResourceRel = "single-technique", path = "single-technique")
+@RepositoryRestResource(collectionResourceRel = "attack-technique", path = "attack-technique")
 public interface AttackTechniqueRepo extends PagingAndSortingRepository<AttackTechnique, UUID>, CrudRepository<AttackTechnique, UUID> {
-	Technique findByMitreId(@Param("mitreId") String mitreId);
+	List<Technique> findByMitreId(@Param("mitreId") String mitreId);
 	List<Technique> findByParentMitreId(@Param("mitreId") String mitreId);
 }

@@ -1,8 +1,12 @@
-server:
-  port: 7000
+logging:
+  level:
+    web: DEBUG
 spring:
+  main: 
+    banner-mode: off
   neo4j:
     authentication:
-      password: P@55w0rd!
       username: neo4j
     uri: bolt://localhost:7687
+  profiles:
+    active: local, dev, qa, prod, test

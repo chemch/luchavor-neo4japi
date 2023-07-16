@@ -1,0 +1,6 @@
+server:
+  port: 7003
+spring:
+  neo4j:
+    authentication:
+      password: x@1ca2w1s3WNGC%5

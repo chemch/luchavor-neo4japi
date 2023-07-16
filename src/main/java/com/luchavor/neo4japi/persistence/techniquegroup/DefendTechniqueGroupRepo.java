@@ -11,8 +11,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import com.luchavor.datamodel.technique.Technique;
 import com.luchavor.neo4japi.model.techniquegroup.DefendTechniqueGroup;
 
-@RepositoryRestResource(collectionResourceRel = "composite-technique", path = "composite-technique")
+@RepositoryRestResource(collectionResourceRel = "defend-technique-group", path = "defend-technique-group")
 public interface DefendTechniqueGroupRepo extends PagingAndSortingRepository<DefendTechniqueGroup, UUID>, CrudRepository<DefendTechniqueGroup, UUID> {
-	Technique findByMitreId(@Param("mitreId") String mitreId);
+	List<Technique> findByMitreId(@Param("mitreId") String mitreId);
 	List<Technique> findByParentMitreId(@Param("mitreId") String mitreId);
 }
