@@ -51,7 +51,7 @@ public class TechniqueController {
 		techniqueService.deleteAllTechniques();
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	// end::techniqueBatchController[]
+	// end::techniqueBatchController[] 
 	
 	// tag::techniqueRelationController[]
 	@PostMapping("/relations")
