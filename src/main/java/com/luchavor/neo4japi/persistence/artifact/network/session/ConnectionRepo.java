@@ -1,4 +1,4 @@
-package com.luchavor.neo4japi.persistence.event;
+package com.luchavor.neo4japi.persistence.artifact.network.session;
 
 import java.util.UUID;
 

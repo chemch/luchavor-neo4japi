@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.luchavor.datamodel.artifact.network.session.connection.ConnectionImpl;
 import com.luchavor.datamodel.artifact.network.session.dns.DnsEventImpl;
-import com.luchavor.neo4japi.persistence.event.ConnectionRepo;
-import com.luchavor.neo4japi.persistence.event.DnsEventRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.ConnectionRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.DnsEventRepo;
 
 @Service
 public class EventService {
