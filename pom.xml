@@ -50,6 +50,13 @@
 			<artifactId>datamodel</artifactId>
 			<version>0.0.3</version>
 		</dependency>
+		<dependency>
+		  <groupId>com.luchavor</groupId>
+		  <artifactId>datamodel</artifactId>
+		  <version>0.0.3</version>
+		  <type>test-jar</type>
+		  <scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import com.luchavor.datamodel.artifact.network.session.connection.Connection;
+import com.luchavor.datamodel.artifact.network.session.connection.ConnectionImpl;
+import com.test.luchavor.datamodel.artifact.network.session.connection.ConnectionTests;
 
 @SpringBootTest
 @ActiveProfiles("test")
 public class ConnectionPersistenceTests {
-	//private ConnectionTests connectionTests = new ConnectionTests();
+	private ConnectionTests connectionTests = new ConnectionTests();
 	
 	@Autowired
 	ConnectionRepo connectionRepo;
@@ -22,11 +24,11 @@ public class ConnectionPersistenceTests {
     	connectionRepo.deleteAll();
 	}
     
-//    @Test
-//    void shouldAddSafely() throws Exception {
-//		Connection connection = connectionTests.getTestConnection1();
-//		// examine connection for nullness
-//		assertNotNull(connection);
-//		connectionRepo.save((ConnectionImpl) connection);
-//	}    
+    @Test
+    void shouldAddSafely() throws Exception {
+		Connection connection = connectionTests.getTestConnection1();
+		// examine connection for nullness
+		assertNotNull(connection);
+		connectionRepo.save((ConnectionImpl) connection);
+	}    
 }
