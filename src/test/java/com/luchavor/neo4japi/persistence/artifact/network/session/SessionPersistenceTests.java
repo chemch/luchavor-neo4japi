@@ -10,6 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 import com.luchavor.datamodel.artifact.network.session.Session;
 import com.luchavor.datamodel.artifact.network.session.SessionImpl;
 import com.luchavor.datamodel.artifact.network.session.SessionTests;
+import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSessionStateRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -18,10 +20,53 @@ public class SessionPersistenceTests {
 	
 	@Autowired
 	SessionRepo sessionRepo;
+	
+	@Autowired
+	ClosedSessionStateRepo closedSessionStateRepo;
+	
+	@Autowired
+	OpenSessionStateRepo openSessionStateRepo;
+	
+	@Autowired
+	DnsEventRepo dnsEventRepo;
+	
+	@Autowired
+	HttpEventRepo httpEventRepo;
+	
+	@Autowired
+	SmbEventRepo smbEventRepo;
+	
+	@Autowired
+	KerberosEventRepo kerberosEventRepo;
+	
+	@Autowired
+	SslEventRepo sslEventRepo;
+	
+	@Autowired
+	RpcEventRepo rpcEventRepo;
+	
+	@Autowired
+	NtlmEventRepo ntlmEventRepo;
+	
+	@Autowired
+	ConnectionRepo connectionRepo;
+	
+	@Autowired
+	AnomalyEventRepo anomalyEventReo;
 
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
     	sessionRepo.deleteAll();
+    	openSessionStateRepo.deleteAll();
+    	closedSessionStateRepo.deleteAll();
+    	dnsEventRepo.deleteAll();
+    	httpEventRepo.deleteAll();
+    	kerberosEventRepo.deleteAll();
+    	smbEventRepo.deleteAll();
+    	ntlmEventRepo.deleteAll();
+    	sslEventRepo.deleteAll();
+    	rpcEventRepo.deleteAll();
+    	anomalyEventReo.deleteAll();
 	}
     
     @Test
@@ -33,6 +78,7 @@ public class SessionPersistenceTests {
 		Session session5 = sessionTests.getSession5();
 		Session session6 = sessionTests.getSession6();
 		Session session7 = sessionTests.getSession7();
+		Session session8 = sessionTests.getSession8();
 		// examine for nullness
 		assertNotNull(session1);
 		assertNotNull(session2);
@@ -41,6 +87,7 @@ public class SessionPersistenceTests {
 		assertNotNull(session5);
 		assertNotNull(session6);
 		assertNotNull(session7);
+		assertNotNull(session8);
 		// save objects
 		sessionRepo.save((SessionImpl) session1);
 		sessionRepo.save((SessionImpl) session2);
@@ -49,5 +96,6 @@ public class SessionPersistenceTests {
 		sessionRepo.save((SessionImpl) session5);
 		sessionRepo.save((SessionImpl) session6);
 		sessionRepo.save((SessionImpl) session7);
+		sessionRepo.save((SessionImpl) session8);
 	}    
 }

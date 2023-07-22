@@ -10,12 +10,14 @@ import org.springframework.test.context.ActiveProfiles;
 import com.luchavor.datamodel.artifact.Artifact;
 import com.luchavor.datamodel.artifact.ArtifactImpl;
 import com.luchavor.datamodel.artifact.ArtifactTests;
+import com.luchavor.neo4japi.persistence.artifact.network.observation.CertificateRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.observation.ExecutableRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.observation.FileRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.observation.HostRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.observation.ServiceRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.observation.SmbFileRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.observation.SoftwareRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.AnomalyEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.ConnectionRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.DnsEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.HttpEventRepo;
@@ -25,6 +27,11 @@ import com.luchavor.neo4japi.persistence.artifact.network.session.RpcEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SessionRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SmbEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SslEventRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSessionStateRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
+import com.luchavor.neo4japi.persistence.artifact.state.CompleteArtifactStateRepo;
+import com.luchavor.neo4japi.persistence.artifact.state.EmptyArtifactStateRepo;
+import com.luchavor.neo4japi.persistence.artifact.state.PartialArtifactStateRepo;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -78,10 +85,33 @@ public class ArtifactPersistenceTests {
 	
 	@Autowired
 	NtlmEventRepo ntlmEventRepo;
-
+	
+	@Autowired
+	AnomalyEventRepo anomalyEventRepo;
+	
+	@Autowired
+	CompleteArtifactStateRepo completeArtifactStateRepo;
+	
+	@Autowired
+	PartialArtifactStateRepo partialArtifactStateRepo;
+	
+	@Autowired
+	EmptyArtifactStateRepo emptyArtifactStateRepo;
+	
+	@Autowired
+	CertificateRepo certificateRepo;
+	
+	@Autowired
+	ClosedSessionStateRepo closedSessionStateRepo;
+	
+	@Autowired
+	OpenSessionStateRepo openSessionStateRepo;
+	
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
+    	anomalyEventRepo.deleteAll();
     	artifactRepo.deleteAll();
+    	certificateRepo.deleteAll();
     	sessionRepo.deleteAll();
     	connectionRepo.deleteAll();
     	fileRepo.deleteAll();
@@ -97,12 +127,22 @@ public class ArtifactPersistenceTests {
     	ntlmEventRepo.deleteAll();
     	sslEventRepo.deleteAll();
     	rpcEventRepo.deleteAll();
-    	
+    	completeArtifactStateRepo.deleteAll();
+    	emptyArtifactStateRepo.deleteAll();
+    	partialArtifactStateRepo.deleteAll();
+    	openSessionStateRepo.deleteAll();
+    	closedSessionStateRepo.deleteAll();
 	}
     
     @Test
-    void shouldAddSessionArtifactsSafely() throws Exception {
-		Artifact<?> artifact1 = artifactTests.getArtifact1();
+    void shouldAddArtifactsSafely() throws Exception {
+    	// load all artifacts
+		loadSessionArtifacts();
+		loadObservationArtifacts();
+	}    
+    
+    private void loadSessionArtifacts() throws Exception {
+    	Artifact<?> artifact1 = artifactTests.getArtifact1();
 		Artifact<?> artifact2 = artifactTests.getArtifact2();
 		Artifact<?> artifact3 = artifactTests.getArtifact3();
 		Artifact<?> artifact4 = artifactTests.getArtifact4();
@@ -125,16 +165,16 @@ public class ArtifactPersistenceTests {
 		artifactRepo.save((ArtifactImpl<?>) artifact5);
 		artifactRepo.save((ArtifactImpl<?>) artifact8);
 		artifactRepo.save((ArtifactImpl<?>) artifact9);
-	}    
+    }
     
-    @Test
-    void shouldAddObservationArtifactsSafely() throws Exception {
-		Artifact<?> artifact6 = artifactTests.getArtifact6();
+    private void loadObservationArtifacts() throws Exception {
+    	Artifact<?> artifact6 = artifactTests.getArtifact6();
 		Artifact<?> artifact7 = artifactTests.getArtifact7();
 		Artifact<?> artifact10 = artifactTests.getArtifact10();
 		Artifact<?> artifact11 = artifactTests.getArtifact11();
 		Artifact<?> artifact12 = artifactTests.getArtifact12();
 		Artifact<?> artifact13 = artifactTests.getArtifact13();
+		Artifact<?> artifact14 = artifactTests.getArtifact14();
 		// examine object for nullness
 		assertNotNull(artifact6);
 		assertNotNull(artifact7);
@@ -142,6 +182,7 @@ public class ArtifactPersistenceTests {
 		assertNotNull(artifact11);
 		assertNotNull(artifact12);
 		assertNotNull(artifact13);
+		assertNotNull(artifact14);
 		// save objects
 		artifactRepo.save((ArtifactImpl<?>) artifact6);
 		artifactRepo.save((ArtifactImpl<?>) artifact7);
@@ -149,5 +190,6 @@ public class ArtifactPersistenceTests {
 		artifactRepo.save((ArtifactImpl<?>) artifact11);
 		artifactRepo.save((ArtifactImpl<?>) artifact12);
 		artifactRepo.save((ArtifactImpl<?>) artifact13);
-	}    
+		artifactRepo.save((ArtifactImpl<?>) artifact14);
+    }
 }
