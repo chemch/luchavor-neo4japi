@@ -56,10 +56,14 @@ public class SessionPersistenceTests {
 	
 	@Autowired
 	AnomalyEventRepo anomalyEventReo;
+	
+	@Autowired
+	NtpEventRepo ntpEventRepo;
 
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
     	sessionRepo.deleteAll();
+    	ntpEventRepo.deleteAll();
     	openSessionStateRepo.deleteAll();
     	closedSessionStateRepo.deleteAll();
     	dnsEventRepo.deleteAll();
@@ -84,6 +88,7 @@ public class SessionPersistenceTests {
 		Session session7 = sessionTests.getSession7();
 		Session session8 = sessionTests.getSession8();
 		Session session9 = sessionTests.getSession9();
+		Session session10 = sessionTests.getSession10();
 		// examine for nullness
 		assertNotNull(session1);
 		assertNotNull(session2);
@@ -94,6 +99,7 @@ public class SessionPersistenceTests {
 		assertNotNull(session7);
 		assertNotNull(session8);
 		assertNotNull(session9);
+		assertNotNull(session10);
 		// save objects
 		sessionRepo.save((SessionImpl) session1);
 		sessionRepo.save((SessionImpl) session2);
@@ -104,5 +110,6 @@ public class SessionPersistenceTests {
 		sessionRepo.save((SessionImpl) session7);
 		sessionRepo.save((SessionImpl) session8);
 		sessionRepo.save((SessionImpl) session9);
+		sessionRepo.save((SessionImpl) session10);
 	}    
 }

@@ -7,29 +7,28 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-
-import com.luchavor.datamodel.artifact.network.session.anomaly.AnomalyEvent;
-import com.luchavor.datamodel.artifact.network.session.anomaly.AnomalyEventImpl;
-import com.luchavor.datamodel.artifact.network.session.anomaly.AnomalyEventTests;
+import com.luchavor.datamodel.artifact.network.session.ntp.NtpEvent;
+import com.luchavor.datamodel.artifact.network.session.ntp.NtpEventImpl;
+import com.luchavor.datamodel.artifact.network.session.ntp.NtpEventTests;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class AnomalyEventPersistenceTests {
-	private AnomalyEventTests anomalyEventTests = new AnomalyEventTests();
+public class NtpEventPersistenceTests {
+	private NtpEventTests eventTests = new NtpEventTests();
 	
 	@Autowired
-	AnomalyEventRepo anomalyEventRepo;
+	NtpEventRepo eventRepo;
 
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
-    	anomalyEventRepo.deleteAll();
+    	eventRepo.deleteAll();
 	}
     
     @Test
     void shouldAddSafely() throws Exception {
-		AnomalyEvent event = anomalyEventTests.getAnomalyEventList1().get(0);
+		NtpEvent event = eventTests.getNtpEventList1().get(0);
 		// examine event for nullness
 		assertNotNull(event);
-		anomalyEventRepo.save((AnomalyEventImpl) event);
+		eventRepo.save((NtpEventImpl) event);
 	}    
 }
