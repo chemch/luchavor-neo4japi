@@ -22,6 +22,7 @@ import com.luchavor.neo4japi.persistence.artifact.network.session.ConnectionRepo
 import com.luchavor.neo4japi.persistence.artifact.network.session.DnsEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.HttpEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.KerberosEventRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.ModbusEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.NtlmEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.RpcEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SessionRepo;
@@ -87,6 +88,9 @@ public class ArtifactPersistenceTests {
 	NtlmEventRepo ntlmEventRepo;
 	
 	@Autowired
+	ModbusEventRepo modbusEventRepo;
+	
+	@Autowired
 	AnomalyEventRepo anomalyEventRepo;
 	
 	@Autowired
@@ -126,6 +130,7 @@ public class ArtifactPersistenceTests {
     	smbEventRepo.deleteAll();
     	ntlmEventRepo.deleteAll();
     	sslEventRepo.deleteAll();
+    	modbusEventRepo.deleteAll();
     	rpcEventRepo.deleteAll();
     	completeArtifactStateRepo.deleteAll();
     	emptyArtifactStateRepo.deleteAll();
@@ -149,6 +154,8 @@ public class ArtifactPersistenceTests {
 		Artifact<?> artifact5 = artifactTests.getArtifact5();
 		Artifact<?> artifact8 = artifactTests.getArtifact8();
 		Artifact<?> artifact9 = artifactTests.getArtifact9();
+		Artifact<?> artifact15 = artifactTests.getArtifact15();
+		Artifact<?> artifact16 = artifactTests.getArtifact16();
 		// examine object for nullness
 		assertNotNull(artifact1);
 		assertNotNull(artifact2);
@@ -157,6 +164,8 @@ public class ArtifactPersistenceTests {
 		assertNotNull(artifact5);
 		assertNotNull(artifact8);
 		assertNotNull(artifact9);
+		assertNotNull(artifact15);
+		assertNotNull(artifact16);
 		// save objects1
 		artifactRepo.save((ArtifactImpl<?>) artifact1);
 		artifactRepo.save((ArtifactImpl<?>) artifact2);
@@ -165,6 +174,8 @@ public class ArtifactPersistenceTests {
 		artifactRepo.save((ArtifactImpl<?>) artifact5);
 		artifactRepo.save((ArtifactImpl<?>) artifact8);
 		artifactRepo.save((ArtifactImpl<?>) artifact9);
+		artifactRepo.save((ArtifactImpl<?>) artifact15);
+		artifactRepo.save((ArtifactImpl<?>) artifact16);
     }
     
     private void loadObservationArtifacts() throws Exception {

@@ -43,6 +43,9 @@ public class SessionPersistenceTests {
 	SslEventRepo sslEventRepo;
 	
 	@Autowired
+	ModbusEventRepo modbusEventRepo;
+	
+	@Autowired
 	RpcEventRepo rpcEventRepo;
 	
 	@Autowired
@@ -67,6 +70,7 @@ public class SessionPersistenceTests {
     	sslEventRepo.deleteAll();
     	rpcEventRepo.deleteAll();
     	anomalyEventReo.deleteAll();
+    	modbusEventRepo.deleteAll();
 	}
     
     @Test
@@ -79,6 +83,7 @@ public class SessionPersistenceTests {
 		Session session6 = sessionTests.getSession6();
 		Session session7 = sessionTests.getSession7();
 		Session session8 = sessionTests.getSession8();
+		Session session9 = sessionTests.getSession9();
 		// examine for nullness
 		assertNotNull(session1);
 		assertNotNull(session2);
@@ -88,6 +93,7 @@ public class SessionPersistenceTests {
 		assertNotNull(session6);
 		assertNotNull(session7);
 		assertNotNull(session8);
+		assertNotNull(session9);
 		// save objects
 		sessionRepo.save((SessionImpl) session1);
 		sessionRepo.save((SessionImpl) session2);
@@ -97,5 +103,6 @@ public class SessionPersistenceTests {
 		sessionRepo.save((SessionImpl) session6);
 		sessionRepo.save((SessionImpl) session7);
 		sessionRepo.save((SessionImpl) session8);
+		sessionRepo.save((SessionImpl) session9);
 	}    
 }
