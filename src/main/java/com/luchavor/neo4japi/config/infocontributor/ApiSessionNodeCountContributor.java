@@ -8,7 +8,7 @@ import com.luchavor.datamodel.artifact.ArtifactImpl;
 import io.micrometer.core.instrument.MeterRegistry;
 
 @Component
-public class SessionNodeCountContributor extends AbstractRepositoryEventListener<ArtifactImpl<?>>{
+public class ApiSessionNodeCountContributor extends AbstractRepositoryEventListener<ArtifactImpl<?>>{
 	@Autowired
 	MeterRegistry meterRegistry;
 	

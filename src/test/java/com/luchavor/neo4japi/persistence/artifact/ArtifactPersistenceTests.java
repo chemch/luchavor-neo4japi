@@ -10,32 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 import com.luchavor.datamodel.artifact.Artifact;
 import com.luchavor.datamodel.artifact.ArtifactImpl;
 import com.luchavor.datamodel.artifact.ArtifactTests;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.CertificateExchangeRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.CertificateRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.ExecutableRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.FileRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.HostRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.ServiceRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.SmbFileRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.observation.SoftwareRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.AnomalyEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.ConnectionRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.DnsEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.HttpEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.KerberosEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.ModbusEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.NtlmEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.NtpEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.RpcEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.SessionRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.SmbEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.SmtpEventRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.SslEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSessionStateRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
-import com.luchavor.neo4japi.persistence.artifact.state.CompleteArtifactStateRepo;
-import com.luchavor.neo4japi.persistence.artifact.state.EmptyArtifactStateRepo;
-import com.luchavor.neo4japi.persistence.artifact.state.PartialArtifactStateRepo;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -46,78 +22,6 @@ public class ArtifactPersistenceTests {
 	ArtifactRepo artifactRepo;
 	
 	@Autowired
-	SessionRepo sessionRepo;
-	
-	@Autowired
-	FileRepo fileRepo;
-	
-	@Autowired
-	SmbFileRepo smbFileRepo;
-	
-	@Autowired
-	ExecutableRepo executableRepo;
-	
-	@Autowired
-	SoftwareRepo softwareRepo;
-	
-	@Autowired
-	ServiceRepo serviceRepo;
-	
-	@Autowired
-	HostRepo hostRepo;
-	
-	@Autowired
-	ConnectionRepo connectionRepo;
-	
-	@Autowired
-	DnsEventRepo dnsEventRepo;
-	
-	@Autowired
-	NtpEventRepo ntpEventRepo;
-	
-	@Autowired
-	HttpEventRepo httpEventRepo;
-	
-	@Autowired
-	SmbEventRepo smbEventRepo;
-	
-	@Autowired
-	KerberosEventRepo kerberosEventRepo;
-	
-	@Autowired
-	SslEventRepo sslEventRepo;
-	
-	@Autowired
-	RpcEventRepo rpcEventRepo;
-	
-	@Autowired
-	NtlmEventRepo ntlmEventRepo;
-	
-	@Autowired
-	ModbusEventRepo modbusEventRepo;
-	
-	@Autowired
-	AnomalyEventRepo anomalyEventRepo;
-	
-	@Autowired
-	SmtpEventRepo smtpEventRepo;
-	
-	@Autowired
-	CompleteArtifactStateRepo completeArtifactStateRepo;
-	
-	@Autowired
-	PartialArtifactStateRepo partialArtifactStateRepo;
-	
-	@Autowired
-	EmptyArtifactStateRepo emptyArtifactStateRepo;
-	
-	@Autowired
-	CertificateRepo certificateRepo;
-	
-	@Autowired
-	CertificateExchangeRepo certificateExchangeRepo;
-	
-	@Autowired
 	ClosedSessionStateRepo closedSessionStateRepo;
 	
 	@Autowired
@@ -125,31 +29,7 @@ public class ArtifactPersistenceTests {
 	
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
-    	certificateExchangeRepo.deleteAll();
-    	anomalyEventRepo.deleteAll();
-    	smtpEventRepo.deleteAll();
     	artifactRepo.deleteAll();
-    	certificateRepo.deleteAll();
-    	sessionRepo.deleteAll();
-    	connectionRepo.deleteAll();
-    	fileRepo.deleteAll();
-    	executableRepo.deleteAll();
-    	smbFileRepo.deleteAll();
-    	softwareRepo.deleteAll();
-    	serviceRepo.deleteAll();
-    	hostRepo.deleteAll();
-    	dnsEventRepo.deleteAll();
-    	httpEventRepo.deleteAll();
-    	kerberosEventRepo.deleteAll();
-    	smbEventRepo.deleteAll();
-    	ntlmEventRepo.deleteAll();
-    	sslEventRepo.deleteAll();
-    	ntpEventRepo.deleteAll();
-    	modbusEventRepo.deleteAll();
-    	rpcEventRepo.deleteAll();
-    	completeArtifactStateRepo.deleteAll();
-    	emptyArtifactStateRepo.deleteAll();
-    	partialArtifactStateRepo.deleteAll();
     	openSessionStateRepo.deleteAll();
     	closedSessionStateRepo.deleteAll();
 	}

@@ -10,8 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 import com.luchavor.datamodel.artifact.network.session.Session;
 import com.luchavor.datamodel.artifact.network.session.SessionImpl;
 import com.luchavor.datamodel.artifact.network.session.SessionTests;
-import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSessionStateRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -19,70 +17,11 @@ public class SessionPersistenceTests {
 	private SessionTests sessionTests = new SessionTests();
 	
 	@Autowired
-	SessionRepo sessionRepo;
-	
-	@Autowired
-	ClosedSessionStateRepo closedSessionStateRepo;
-	
-	@Autowired
-	OpenSessionStateRepo openSessionStateRepo;
-	
-	@Autowired
-	DnsEventRepo dnsEventRepo;
-	
-	@Autowired
-	HttpEventRepo httpEventRepo;
-	
-	@Autowired
-	SmbEventRepo smbEventRepo;
-	
-	@Autowired
-	SshEventRepo sshEventRepo;
-	
-	@Autowired
-	KerberosEventRepo kerberosEventRepo;
-	
-	@Autowired
-	SslEventRepo sslEventRepo;
-	
-	@Autowired
-	ModbusEventRepo modbusEventRepo;
-	
-	@Autowired
-	RpcEventRepo rpcEventRepo;
-	
-	@Autowired
-	NtlmEventRepo ntlmEventRepo;
-	
-	@Autowired
-	ConnectionRepo connectionRepo;
-	
-	@Autowired
-	AnomalyEventRepo anomalyEventReo;
-	
-	@Autowired
-	NtpEventRepo ntpEventRepo;
-	
-	@Autowired
-	SmtpEventRepo smtpEventRepo;
+	SessionRepo repo;
 
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
-    	sessionRepo.deleteAll();
-    	ntpEventRepo.deleteAll();
-    	smtpEventRepo.deleteAll();
-    	openSessionStateRepo.deleteAll();
-    	closedSessionStateRepo.deleteAll();
-    	dnsEventRepo.deleteAll();
-    	httpEventRepo.deleteAll();
-    	kerberosEventRepo.deleteAll();
-    	smbEventRepo.deleteAll();
-    	ntlmEventRepo.deleteAll();
-    	sslEventRepo.deleteAll();
-    	rpcEventRepo.deleteAll();
-    	anomalyEventReo.deleteAll();
-    	modbusEventRepo.deleteAll();
-    	sshEventRepo.deleteAll();
+    	repo.deleteAll();
 	}
     
     @Test
@@ -113,17 +52,17 @@ public class SessionPersistenceTests {
 		assertNotNull(session11);
 		assertNotNull(session12);
 		// save objects
-		sessionRepo.save((SessionImpl) session1);
-		sessionRepo.save((SessionImpl) session2);
-		sessionRepo.save((SessionImpl) session3);
-		sessionRepo.save((SessionImpl) session4);
-		sessionRepo.save((SessionImpl) session5);
-		sessionRepo.save((SessionImpl) session6);
-		sessionRepo.save((SessionImpl) session7);
-		sessionRepo.save((SessionImpl) session8);
-		sessionRepo.save((SessionImpl) session9);
-		sessionRepo.save((SessionImpl) session10);
-		sessionRepo.save((SessionImpl) session11);
-		sessionRepo.save((SessionImpl) session12);
+		repo.save((SessionImpl) session1);
+		repo.save((SessionImpl) session2);
+		repo.save((SessionImpl) session3);
+		repo.save((SessionImpl) session4);
+		repo.save((SessionImpl) session5);
+		repo.save((SessionImpl) session6);
+		repo.save((SessionImpl) session7);
+		repo.save((SessionImpl) session8);
+		repo.save((SessionImpl) session9);
+		repo.save((SessionImpl) session10);
+		repo.save((SessionImpl) session11);
+		repo.save((SessionImpl) session12);
 	}    
 }
