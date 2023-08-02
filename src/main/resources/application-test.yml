@@ -4,3 +4,14 @@ spring:
   neo4j:
     authentication:
       password: 31A1fZZHynvY&mU%
+management:
+  info:
+    git:
+      enabled: true
+      mode: full
+  endpoint:
+    env:
+      show-values: always
+logging:
+  level:
+    root: INFO

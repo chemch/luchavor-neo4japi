@@ -37,6 +37,9 @@ public class SessionPersistenceTests {
 	SmbEventRepo smbEventRepo;
 	
 	@Autowired
+	SshEventRepo sshEventRepo;
+	
+	@Autowired
 	KerberosEventRepo kerberosEventRepo;
 	
 	@Autowired
@@ -59,11 +62,15 @@ public class SessionPersistenceTests {
 	
 	@Autowired
 	NtpEventRepo ntpEventRepo;
+	
+	@Autowired
+	SmtpEventRepo smtpEventRepo;
 
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
     	sessionRepo.deleteAll();
     	ntpEventRepo.deleteAll();
+    	smtpEventRepo.deleteAll();
     	openSessionStateRepo.deleteAll();
     	closedSessionStateRepo.deleteAll();
     	dnsEventRepo.deleteAll();
@@ -75,6 +82,7 @@ public class SessionPersistenceTests {
     	rpcEventRepo.deleteAll();
     	anomalyEventReo.deleteAll();
     	modbusEventRepo.deleteAll();
+    	sshEventRepo.deleteAll();
 	}
     
     @Test
@@ -89,6 +97,8 @@ public class SessionPersistenceTests {
 		Session session8 = sessionTests.getSession8();
 		Session session9 = sessionTests.getSession9();
 		Session session10 = sessionTests.getSession10();
+		Session session11 = sessionTests.getSession11();
+		Session session12 = sessionTests.getSession12();
 		// examine for nullness
 		assertNotNull(session1);
 		assertNotNull(session2);
@@ -100,6 +110,8 @@ public class SessionPersistenceTests {
 		assertNotNull(session8);
 		assertNotNull(session9);
 		assertNotNull(session10);
+		assertNotNull(session11);
+		assertNotNull(session12);
 		// save objects
 		sessionRepo.save((SessionImpl) session1);
 		sessionRepo.save((SessionImpl) session2);
@@ -111,5 +123,7 @@ public class SessionPersistenceTests {
 		sessionRepo.save((SessionImpl) session8);
 		sessionRepo.save((SessionImpl) session9);
 		sessionRepo.save((SessionImpl) session10);
+		sessionRepo.save((SessionImpl) session11);
+		sessionRepo.save((SessionImpl) session12);
 	}    
 }

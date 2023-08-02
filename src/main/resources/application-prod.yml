@@ -4,3 +4,7 @@ spring:
   neo4j:
     authentication:
       password: 1xZHX8%SO6g57v@#
+management:
+  endpoint:
+    env:
+      show-values: never      

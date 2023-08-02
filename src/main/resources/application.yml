@@ -1,6 +1,8 @@
+info:
+  author: chemch
 logging:
   level:
-    web: DEBUG
+    web: WARN
 spring:
   main: 
     banner-mode: off
@@ -10,3 +12,15 @@ spring:
     uri: bolt://localhost:7687
   profiles:
     active: local, dev, qa, prod, test
+management:
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: '*'

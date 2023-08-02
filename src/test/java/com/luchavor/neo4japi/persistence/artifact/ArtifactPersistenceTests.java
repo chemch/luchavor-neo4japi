@@ -29,6 +29,7 @@ import com.luchavor.neo4japi.persistence.artifact.network.session.NtpEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.RpcEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SessionRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SmbEventRepo;
+import com.luchavor.neo4japi.persistence.artifact.network.session.SmtpEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.SslEventRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSessionStateRepo;
 import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
@@ -99,6 +100,9 @@ public class ArtifactPersistenceTests {
 	AnomalyEventRepo anomalyEventRepo;
 	
 	@Autowired
+	SmtpEventRepo smtpEventRepo;
+	
+	@Autowired
 	CompleteArtifactStateRepo completeArtifactStateRepo;
 	
 	@Autowired
@@ -123,6 +127,7 @@ public class ArtifactPersistenceTests {
     void deleteAllBeforeTests() throws Exception {
     	certificateExchangeRepo.deleteAll();
     	anomalyEventRepo.deleteAll();
+    	smtpEventRepo.deleteAll();
     	artifactRepo.deleteAll();
     	certificateRepo.deleteAll();
     	sessionRepo.deleteAll();
@@ -167,6 +172,8 @@ public class ArtifactPersistenceTests {
 		Artifact<?> artifact15 = artifactTests.getArtifact15();
 		Artifact<?> artifact16 = artifactTests.getArtifact16();
 		Artifact<?> artifact17 = artifactTests.getArtifact17();
+		Artifact<?> artifact19 = artifactTests.getArtifact19();
+		Artifact<?> artifact20 = artifactTests.getArtifact20();
 		// examine object for nullness
 		assertNotNull(artifact1);
 		assertNotNull(artifact2);
@@ -178,6 +185,8 @@ public class ArtifactPersistenceTests {
 		assertNotNull(artifact15);
 		assertNotNull(artifact16);
 		assertNotNull(artifact17);
+		assertNotNull(artifact19);
+		assertNotNull(artifact20);
 		// save objects1
 		artifactRepo.save((ArtifactImpl<?>) artifact1);
 		artifactRepo.save((ArtifactImpl<?>) artifact2);
@@ -189,6 +198,8 @@ public class ArtifactPersistenceTests {
 		artifactRepo.save((ArtifactImpl<?>) artifact15);
 		artifactRepo.save((ArtifactImpl<?>) artifact16);
 		artifactRepo.save((ArtifactImpl<?>) artifact17);
+		artifactRepo.save((ArtifactImpl<?>) artifact19);
+		artifactRepo.save((ArtifactImpl<?>) artifact20);
     }
     
     private void loadObservationArtifacts() throws Exception {
