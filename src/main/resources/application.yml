@@ -4,6 +4,8 @@ logging:
   level:
     web: WARN
 spring:
+  application:
+    name: neo4j-api
   main: 
     banner-mode: off
   neo4j:

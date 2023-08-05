@@ -1,6 +1,12 @@
 server:
   port: 7005
 spring:
+  boot:
+    admin:
+      client:
+        instance:
+          management-base-url: http://localhost:7005
+        url: http://localhost:9000
   neo4j:
     authentication:
       password: 31A1fZZHynvY&mU%

@@ -1,10 +1,14 @@
 server:
   port: 7002
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9000
   neo4j:
     authentication:
       password: 9Dmt4&8EwC2*LQ9A
 management:
   endpoint:
     env:
-      show-values: always      
+      show-values: always 
