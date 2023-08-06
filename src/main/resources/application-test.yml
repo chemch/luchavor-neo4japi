@@ -6,6 +6,7 @@ spring:
       client:
         instance:
           management-base-url: http://localhost:7005
+          service-base-url: http://localhost:7005
         url: http://localhost:9000
   neo4j:
     authentication:
