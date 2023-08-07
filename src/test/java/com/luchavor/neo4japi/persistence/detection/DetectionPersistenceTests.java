@@ -42,11 +42,10 @@ public class DetectionPersistenceTests {
 	}
     
     private void loadDetections() throws Exception {
-    	Detection<SslEvent, SslEvent, SslEvent> detection1 = detectionTests.getDetection1();
+    	Detection<?, ?, ?> detection1 = detectionTests.getDetection1();
 		// examine object for nullness
 		assertNotNull(detection1);
 		// save objects
-		// artifactRepo.save((ArtifactImpl<?>) artifact1);
 		detectionRepo.save((DetectionImpl<?, ?, ?>) detection1);
     }
 }
