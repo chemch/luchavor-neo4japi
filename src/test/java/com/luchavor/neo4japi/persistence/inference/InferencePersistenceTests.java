@@ -20,7 +20,6 @@ import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSe
 import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
 
 @SpringBootTest
-@AutoConfigureMockMvc
 @ActiveProfiles("test")
 public class InferencePersistenceTests {
 	private InferenceTests tests = new InferenceTests();
@@ -35,11 +34,11 @@ public class InferencePersistenceTests {
 
     @Test
     void loadSessionArtifacts() throws Exception {
-    	InferenceImpl<?, ?> rv = (InferenceImpl<?, ?>) tests.getInference1();
+    	Inference<?> rv =  tests.getInference1();
 		// examine object for nullness
 		assertNotNull(rv);
 		// save objects
-		repo.save( rv);
+		repo.save((InferenceImpl<?>) rv);
 		
     }
 }
