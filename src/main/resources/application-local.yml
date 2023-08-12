@@ -1,5 +1,5 @@
 server:
-  port: 7001
+  port: 11002
 spring:
   neo4j:
     authentication:

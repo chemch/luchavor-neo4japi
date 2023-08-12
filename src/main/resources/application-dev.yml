@@ -1,5 +1,5 @@
 server:
-  port: 7002
+  port: 13002
 spring:
   boot:
     admin:
