@@ -1,4 +1,4 @@
-package com.luchavor.neo4japi.config.infocontributor;
+package com.luchavor.neo4japi.config;
 
 import java.util.HashMap;
 import java.util.Map;

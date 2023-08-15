@@ -1,4 +1,4 @@
-package com.luchavor.neo4japi.config.infocontributor;
+package com.luchavor.neo4japi.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.event.AbstractRepositoryEventListener;
