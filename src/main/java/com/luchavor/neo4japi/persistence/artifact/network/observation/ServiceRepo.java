@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.luchavor.datamodel.artifact.network.observation.service.ServiceImpl;
+import com.luchavor.datamodel.artifact.network.observation.observedservice.ObservedServiceImpl;
 
 @RepositoryRestResource(collectionResourceRel = "service", path = "service")
-public interface ServiceRepo extends PagingAndSortingRepository<ServiceImpl, UUID>, CrudRepository<ServiceImpl, UUID> {
+public interface ServiceRepo extends PagingAndSortingRepository<ObservedServiceImpl, UUID>, CrudRepository<ObservedServiceImpl, UUID> {
 }
