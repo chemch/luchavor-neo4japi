@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.luchavor.datamodel.artifact.network.observation.file.FileImpl;
+import com.luchavor.datamodel.artifact.network.observation.observedfile.ObservedFileImpl;
 
 @RepositoryRestResource(collectionResourceRel = "file", path = "file")
-public interface FileRepo extends PagingAndSortingRepository<FileImpl, UUID>, CrudRepository<FileImpl, UUID> {
+public interface FileRepo extends PagingAndSortingRepository<ObservedFileImpl, UUID>, CrudRepository<ObservedFileImpl, UUID> {
 }
