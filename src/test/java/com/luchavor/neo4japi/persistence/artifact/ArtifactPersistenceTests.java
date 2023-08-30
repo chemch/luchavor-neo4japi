@@ -10,8 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 import com.luchavor.datamodel.artifact.Artifact;
 import com.luchavor.datamodel.artifact.ArtifactImpl;
 import com.luchavor.datamodel.artifact.ArtifactTests;
-import com.luchavor.neo4japi.persistence.artifact.network.session.state.ClosedSessionStateRepo;
-import com.luchavor.neo4japi.persistence.artifact.network.session.state.OpenSessionStateRepo;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -20,18 +18,10 @@ public class ArtifactPersistenceTests {
 	
 	@Autowired
 	ArtifactRepo artifactRepo;
-	
-	@Autowired
-	ClosedSessionStateRepo closedSessionStateRepo;
-	
-	@Autowired
-	OpenSessionStateRepo openSessionStateRepo;
-	
+
     @BeforeEach
     void deleteAllBeforeTests() throws Exception {
     	artifactRepo.deleteAll();
-    	openSessionStateRepo.deleteAll();
-    	closedSessionStateRepo.deleteAll();
 	}
     
     @Test
