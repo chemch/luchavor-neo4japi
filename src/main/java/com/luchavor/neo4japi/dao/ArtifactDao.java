@@ -26,4 +26,8 @@ public class ArtifactDao {
 	public void save(Artifact<?> artifact) {
 		artifactRepo.save((ArtifactImpl<?>) artifact);
 	}
+	
+//	public Boolean exists(String cuid) {
+//		artifactRepo.fin
+//	}
 }

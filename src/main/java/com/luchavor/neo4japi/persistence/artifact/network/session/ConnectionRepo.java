@@ -13,4 +13,5 @@ import com.luchavor.datamodel.artifact.network.session.event.SessionEventType;
 @RepositoryRestResource(collectionResourceRel = "connection", path = "connection")
 public interface ConnectionRepo extends PagingAndSortingRepository<ConnectionImpl, UUID>, CrudRepository<ConnectionImpl, UUID> {
 	Connection findBySessionEventType(@Param("sessionEventType") SessionEventType sessionEventType);
+	//Connection findByC(@Param("cuid") String cuid);
 }
