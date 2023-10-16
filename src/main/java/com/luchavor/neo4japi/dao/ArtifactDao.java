@@ -1,5 +1,8 @@
 package com.luchavor.neo4japi.dao;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,20 +17,9 @@ import com.luchavor.neo4japi.persistence.artifact.network.observation.ObservedHo
 public class ArtifactDao {
 	
 	@Autowired
-	ObservedHostRepo observedHostRepo;
-	
-	public void save(ObservedHost observedHost) {
-		observedHostRepo.save((ObservedHostImpl) observedHost);
-	}
-	
-	@Autowired
 	ArtifactRepo artifactRepo;
 	
 	public void save(Artifact<?> artifact) {
 		artifactRepo.save((ArtifactImpl<?>) artifact);
 	}
-	
-//	public Boolean exists(String cuid) {
-//		artifactRepo.fin
-//	}
 }
