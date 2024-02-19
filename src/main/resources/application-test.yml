@@ -10,7 +10,7 @@ spring:
         url: http://localhost:12000
   neo4j:
     authentication:
-      password: 31A1fZZHynvY&mU%
+      password: 31A1fZZHynvY&mU%!
 management:
   info:
     git:
