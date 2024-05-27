@@ -15,4 +15,6 @@ import java.util.Optional;
 @RepositoryRestResource(collectionResourceRel = "service", path = "service")
 public interface ServiceRepo extends PagingAndSortingRepository<ObservedServiceImpl, UUID>, CrudRepository<ObservedServiceImpl, UUID> {
 	Optional<ObservedService> findByServicesAndHostIp(List<String> services, String hostIp);
+
+	void save(ObservedService observedService);
 }

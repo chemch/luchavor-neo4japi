@@ -14,4 +14,6 @@ import java.util.Optional;
 @RepositoryRestResource(collectionResourceRel = "host", path = "host")
 public interface ObservedHostRepo extends PagingAndSortingRepository<ObservedHostImpl, UUID>, CrudRepository<ObservedHostImpl, UUID> {
 	Optional<ObservedHost> findByHostIp(String hostIp);
+
+	void save(ObservedHost observedHost);
 }

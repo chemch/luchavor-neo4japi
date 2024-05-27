@@ -17,4 +17,6 @@ public interface ConnectionRepo extends PagingAndSortingRepository<ConnectionImp
 	Connection findBySessionEventType(@Param("sessionEventType") SessionEventType sessionEventType);
 	
 	Optional<Connection> findByCommunityId(String communityId);
+	
+	Optional<Connection> findByCuid(String cuid);
 }
